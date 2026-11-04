@@ -4,273 +4,387 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Matteo & Hoà — Lễ Hằng Thuận</title>
+
+<title>Matteo & Hoà | Thiệp Mời</title>
 
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  background: #eae6dd;
-  color: #62674e;
-  font-family: Georgia, serif;
-}
-
-main {
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  padding: 12px;
-}
-
-.card {
-  position: relative;
-  width: min(100%, 460px);
-  aspect-ratio: 644 / 1023;
-  overflow: hidden;
-  border-radius: 24px;
-  box-shadow: 0 20px 70px #514c3a30;
-  background: #faf8f1;
-}
-
-.page {
-  position: absolute;
-  inset: 0;
-  transition: opacity 1.3s ease,
-              transform 1.3s ease;
-}
-
-.page img {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.cover { z-index: 2; }
-
-.details {
-  z-index: 1;
-  opacity: 0;
-  transform: scale(1.045);
-}
-
-.card.open .cover {
-  opacity: 0;
-  transform: scale(1.045);
-  pointer-events: none;
-}
-
-.card.open .details {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.open-btn {
-  position: absolute;
-  left: 50%;
-  bottom: 3.5%;
-  transform: translateX(-50%);
-  background: #737b5c;
-  color: white;
-  border: 1px solid #858b6c;
-  border-radius: 30px;
-  padding: 11px 25px;
-  cursor: pointer;
-  white-space: nowrap;
-  font-family: Georgia, serif;
-  letter-spacing: 2px;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.mask {
-  background: transparent;
-  box-shadow: none;
-  border-radius: none;
-}
-
-.time {
-  position: absolute;
-  left: 41%;
-  top: 38.8%;
-  width: 47%;
-  min-height: 6%;
-  padding: 0% 0%;
-  font-size: clamp(5px, 1.65vw, 12px);
-}
-
-.location {
-  position: absolute;
-  left: 45%;
-  top: 51%;
-  width: 43%;
-  min-height: 7%;
-  padding: 0% 0%;
-  font-size: clamp(5px, 1.65vw, 12px);
-  line-height: 1.4;
-}
-
-.location small {
-  display: block;
-  font-size: .78em;
-  margin-top: 1px;
-}
-
-.dress-icon {
-  position: absolute;
-  left: 12.2%;
-  top: 62.4%;
-  width: 12%;
-  height: 8%;
-  display: grid;
-  place-items: center;
-}
-
-.dress-icon svg {
-  width: 90%;
-  height: 90%;
-  stroke: #73785a;
-  fill: none;
-  stroke-width: 2.2;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-}
-
-.dress {
-  position: absolute;
-  left: 30%;
-  top: 62.5%;
-  width: 54%;
-  min-height: 7%;
-  padding: 0% 1%;
-  font-size: clamp(5px, 1.65vw, 12px);
-  line-height: 1.4;
-}
-
-.dress .heading {
-  font-size: .72em;
-  letter-spacing: 2px;
-  margin-bottom: 4px;
-}
-
-.map-link {
-  position: absolute;
-  left: 24%;
-  top: 72.3%;
-  width: 53%;
-  height: 5.5%;
-  border: 0;
-  border-radius: 30px;
-  background: transparent;
-  cursor: pointer;
-  pointer-events: auto;
-}
-
-.back {
-  position: absolute;
-  right: 6%;
-  bottom: 3.5%;
-  pointer-events: auto;
-  background: #f9f6ed;
-  color: #62674e;
-  border: 1px solid #a6aa8c;
-  border-radius: 30px;
-  padding: 7px 13px;
-  cursor: pointer;
-}
-
-.petal {
-  position: absolute;
-  top: -6%;
-  width: 9px;
-  height: 6px;
-  border-radius: 80% 0 80% 0;
-  background: #dcb7a3;
-  opacity: .65;
-  pointer-events: none;
-  animation: fall linear infinite;
-  z-index: 4;
-}
-
-@keyframes fall {
-  to {
-    transform: translate(40px, 1100px)
-               rotate(600deg);
+  * {
+    box-sizing: border-box;
   }
-}
 
-@media (max-width: 420px) {
-  .time { font-size: 2.7vw; }
-  .location { font-size: 2.4vw; }
-  .dress { font-size: 2.5vw; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
+  html, body {
+    margin: 0;
+    min-height: 100%;
   }
-}
+
+  body {
+    background: #eeebe4;
+    color: #77775e;
+    font-family: Georgia, serif;
+  }
+
+  main {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+  }
+
+  /* MAIN INVITATION CARD */
+
+  .card {
+    position: relative;
+    width: min(100%, 460px);
+    aspect-ratio: 3 / 5;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #faf8f1;
+    box-shadow: 0 15px 45px #514c3a20;
+    isolation: isolate;
+  }
+
+  /* BOTH INVITATION PAGES */
+
+  .page {
+    position: absolute;
+    inset: 0;
+    transition:
+      opacity 1.2s ease,
+      transform 1.2s ease;
+  }
+
+  .page img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: fill;
+  }
+
+  .cover {
+    z-index: 2;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .details {
+    z-index: 1;
+    opacity: 0;
+    transform: scale(1.035);
+    pointer-events: none;
+  }
+
+  .card.open .cover {
+    opacity: 0;
+    transform: scale(1.035);
+    pointer-events: none;
+  }
+
+  .card.open .details {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+
+  /* OPEN INVITATION BUTTON */
+
+  .open-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 3.5%;
+    transform: translateX(-50%);
+
+    padding: 10px 23px;
+    border: 1px solid #9b9d83;
+    border-radius: 30px;
+
+    background: #858c70;
+    color: white;
+
+    font-family: Georgia, serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  /* EDITABLE TEXT LAYER */
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /*
+  ======================================
+  EDIT TEXT POSITIONS AND FONT HERE
+  ======================================
+
+  left = horizontal position
+  top  = vertical position
+  width = available text width
+
+  Change font-size to make text
+  smaller or bigger.
+  */
+
+  /* DATE AND TIME - FIRST BEIGE LINE */
+
+  .time {
+    position: absolute;
+    left: 33%;
+    top: 38.2%;
+    width: 30%;
+    height: 2.6%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+
+    font-family: Georgia, serif;
+    font-size: clamp(9px, 1.3vw, 12px);
+    font-weight: 400;
+    font-style: normal;
+    color: #77775e;
+    line-height: 1.2;
+  }
+
+  /* LOCATION - SECOND BEIGE LINE */
+
+  .location {
+    position: absolute;
+    left: 48%;
+    top: 50.5%;
+    width: 36%;
+    height: 3.5%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+
+    font-family: Georgia, serif;
+    font-size: clamp(9px, 1.3vw, 12px);
+    font-weight: 400;
+    font-style: normal;
+    color: #77775e;
+    line-height: 1.2;
+  }
+
+  .location small {
+    display: block;
+    font-size: 0.85em;
+    margin-top: 2px;
+  }
+
+  /* DRESS CODE - THIRD BEIGE LINE */
+  /* ONE TEXT ONLY - NO HEADING */
+
+  .dress {
+    position: absolute;
+    left: 33%;
+    top: 61.9%;
+    width: 51%;
+    height: 2.6%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+
+    font-family: Georgia, serif;
+    font-size: clamp(9px, 1.3vw, 12px);
+    font-weight: 400;
+    font-style: normal;
+    color: #77775e;
+    line-height: 1.2;
+  }
+
+  /* INVISIBLE GOOGLE MAPS CLICK AREA */
+
+  .map-link {
+    position: absolute;
+    left: 23%;
+    top: 72%;
+    width: 55%;
+    height: 6%;
+
+    border: none;
+    background: transparent;
+    border-radius: 30px;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  /* BACK BUTTON */
+
+  .back-btn {
+    position: absolute;
+    right: 5%;
+    bottom: 2.5%;
+
+    padding: 7px 13px;
+    border: 1px solid #a7aa91;
+    border-radius: 20px;
+
+    background: #faf8f1ed;
+    color: #77775e;
+
+    font-family: Georgia, serif;
+    font-size: 11px;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  /* FLOATING PETALS */
+
+  .petal {
+    position: absolute;
+    top: -8%;
+    z-index: 4;
+
+    width: 8px;
+    height: 6px;
+
+    border-radius: 80% 0 80% 0;
+    background: #e5c9b7;
+    opacity: 0.55;
+
+    pointer-events: none;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    to {
+      transform:
+        translate(40px, 1100px)
+        rotate(600deg);
+    }
+  }
+
+  /* MOBILE TEXT SIZE */
+
+  @media (max-width: 420px) {
+    .time,
+    .location,
+    .dress {
+      font-size: 9px;
+    }
+
+    .open-btn {
+      font-size: 11px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
 </style>
 </head>
 
 <body>
+
 <main>
+
 <div class="card" id="card">
 
-  <!-- PAGE 1: ORIGINAL COVER -->
-  <section class="page cover">
-    <img src="cover.png"
-         alt="Lễ Hằng Thuận — Matteo và Hoà">
+  <!-- ========================= -->
+  <!-- PAGE 1: WEDDING COVER     -->
+  <!-- ========================= -->
 
-    <button class="open-btn"
-            onclick="showDetails()">
+  <section class="page cover">
+
+    <img
+      src="cover.png"
+      alt="Thiệp cưới Matteo và Hoà"
+    >
+
+    <button
+      class="open-btn"
+      onclick="showDetails()"
+    >
       MỞ THIỆP ✧
     </button>
+
   </section>
 
-  <!-- PAGE 2: EDITABLE DETAILS -->
+  <!-- ========================= -->
+  <!-- PAGE 2: WEDDING DETAILS   -->
+  <!-- ========================= -->
+
   <section class="page details">
-    <img src="details.png"
-         alt="Thông tin lễ Hằng Thuận">
+
+    <img
+      src="details.png"
+      alt="Duyên Lành Hội Ngộ"
+    >
 
     <div class="overlay">
 
-      <!-- DATE AND TIME -->
-      <div class="time mask" id="timeText"></div>
+      <!-- DATE + TIME -->
+      <div
+        class="time"
+        id="timeText"
+      ></div>
 
-      <!-- LOCATION -->
-      <div class="location mask">
+      <!-- VENUE + ADDRESS -->
+      <div class="location">
+
         <span id="venueText"></span>
+
         <small id="addressText"></small>
+
       </div>
 
-        <!-- DRESS CODE TEXT -->
-      <div class="dress mask">
-        <div id="dressText"></div>
-      </div>
+      <!-- ONE DRESS CODE TEXT -->
+      <div
+        class="dress"
+        id="dressText"
+      ></div>
 
+      <!-- GOOGLE MAPS BUTTON -->
+      <button
+        class="map-link"
+        onclick="openMap()"
+        aria-label="Mở Google Maps"
+      ></button>
 
-
-      <!-- MAP BUTTON -->
-      <button class="map-link"
-              onclick="openMap()"
-              aria-label="Open Google Maps">
-      </button>
-
-      <button class="back"
-              onclick="showCover()">
+      <!-- BACK TO COVER -->
+      <button
+        class="back-btn"
+        onclick="showCover()"
+      >
         ← Quay lại
       </button>
 
     </div>
+
   </section>
 
 </div>
+
 </main>
 
 <script>
@@ -291,77 +405,119 @@ const INVITATION_DETAILS = {
 
   address: "386 Đ. Lạc Long Quân, Tây Hồ, Hà Nội",
 
-  dresscode: "Áo Dài - Âu Phục",
+  dresscode: "Áo dài - Âu Phục",
 
-  googleMapsUrl: "https://maps.app.goo.gl/KbGVt9JUqMsbi8tB7"
+  googleMapsUrl: "https://maps.app.goo.gl/22pGZQKcEqJ484BY6"
 
 };
 
 /*
 ========================================
-WEBSITE FUNCTIONALITY
+DO NOT NEED TO EDIT BELOW
 ========================================
 */
 
 const card = document.getElementById("card");
 
+/* DATE AND TIME */
+
 document.getElementById("timeText").textContent =
-  INVITATION_DETAILS.date + " · " +
+  INVITATION_DETAILS.date +
+  " · " +
   INVITATION_DETAILS.time;
+
+/* VENUE */
 
 document.getElementById("venueText").textContent =
   INVITATION_DETAILS.venue;
 
+/* ADDRESS */
+
 document.getElementById("addressText").textContent =
   INVITATION_DETAILS.address;
 
+/* DRESS CODE */
+
 document.getElementById("dressText").textContent =
   INVITATION_DETAILS.dresscode;
+
+/* OPEN PAGE 2 */
 
 function showDetails() {
   card.classList.add("open");
 }
 
+/* RETURN TO COVER */
+
 function showCover() {
   card.classList.remove("open");
 }
 
+/* OPEN GOOGLE MAPS */
+
 function openMap() {
-  if (INVITATION_DETAILS.googleMapsUrl) {
+
+  const url = INVITATION_DETAILS.googleMapsUrl;
+
+  if (url) {
     window.open(
-      INVITATION_DETAILS.googleMapsUrl,
+      url,
       "_blank",
       "noopener,noreferrer"
     );
   } else {
-    alert("Google Maps link not added yet.");
+    alert("Chưa có liên kết Google Maps.");
   }
+
 }
 
-// Keyboard navigation
-document.addEventListener("keydown", e => {
-  if (e.key === "ArrowRight") showDetails();
-  if (e.key === "ArrowLeft" || e.key === "Escape") {
+/* KEYBOARD NAVIGATION */
+
+document.addEventListener("keydown", function(e) {
+
+  if (e.key === "ArrowRight") {
+    showDetails();
+  }
+
+  if (
+    e.key === "ArrowLeft" ||
+    e.key === "Escape"
+  ) {
     showCover();
   }
+
 });
 
-// Falling flower petals
-if (!window.matchMedia(
-  "(prefers-reduced-motion: reduce)"
-).matches) {
+/* FLOATING FLOWER PETALS */
+
+if (
+  !window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches
+) {
+
   for (let i = 0; i < 12; i++) {
-    const p = document.createElement("span");
-    p.className = "petal";
-    p.style.left = Math.random() * 100 + "%";
-    p.style.animationDuration =
+
+    const petal = document.createElement("span");
+
+    petal.className = "petal";
+
+    petal.style.left =
+      Math.random() * 100 + "%";
+
+    petal.style.animationDuration =
       (9 + Math.random() * 8) + "s";
-    p.style.animationDelay =
+
+    petal.style.animationDelay =
       (-Math.random() * 16) + "s";
-    card.appendChild(p);
+
+    card.appendChild(petal);
+
   }
+
 }
 
 </script>
+
 </body>
 </html>
