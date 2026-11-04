@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,319 +9,320 @@
 <title>Matteo & Hoà | Wedding Invitation</title>
 
 <style>
-  * {
-    box-sizing: border-box;
+
+/* ====================================
+   GENERAL SETTINGS
+==================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #f6f2e9;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #8b7355;
+}
+
+main {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+}
+
+/* ====================================
+   INVITATION CARD
+
+   Both images should be 960 x 1600
+   or have the same 3:5 proportion.
+==================================== */
+
+.card {
+  position: relative;
+  width: min(100%, 480px);
+  aspect-ratio: 3 / 5;
+  overflow: hidden;
+  border-radius: 6.2% / 3.7%;
+  background: #fffaf2;
+  isolation: isolate;
+}
+
+/* ====================================
+   PAGE TRANSITIONS
+==================================== */
+
+.page {
+  position: absolute;
+  inset: 0;
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+
+.page img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.cover {
+  z-index: 2;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.details {
+  z-index: 1;
+  opacity: 0;
+  transform: scale(1.025);
+  pointer-events: none;
+}
+
+.card.open .cover {
+  opacity: 0;
+  transform: scale(1.025);
+  pointer-events: none;
+}
+
+.card.open .details {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* ====================================
+   COVER BUTTONS
+
+   These transparent areas sit over
+   APRI and MỞ THIỆP on cover.png.
+==================================== */
+
+.language-btn {
+  position: absolute;
+  top: 88%;
+  height: 3.8%;
+  z-index: 5;
+
+  padding: 0;
+  border: 0;
+  border-radius: 40px;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* APRI - LEFT BUTTON */
+
+.italian-btn {
+  left: 32.2%;
+  width: 15.4%;
+}
+
+/* MỞ THIỆP - RIGHT BUTTON */
+
+.vietnamese-btn {
+  left: 51.3%;
+  width: 20%;
+}
+
+/* ====================================
+   TEXT OVERLAY ON DETAILS PAGE
+==================================== */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* CHANGE FONT, SIZE AND COLOR HERE */
+
+.time,
+.location,
+.dress {
+  position: absolute;
+
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  padding: 0;
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(9px, 2.6cqw, 13px);
+  font-weight: 400;
+  font-style: normal;
+  color: #8b7355;
+  line-height: 1.25;
+  text-align: center;
+}
+
+/* ====================================
+   DATE AND TIME
+   First row, right of calendar icon
+==================================== */
+
+.time {
+  left: 28%;
+  top: 35.2%;
+  width: 62%;
+  height: 7.4%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ====================================
+   LOCATION
+   Second row, right of temple icon
+==================================== */
+
+.location {
+  left: 45%;
+  top: 45.7%;
+  width: 45%;
+  height: 8.6%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.location small {
+  display: block;
+  font-size: 0.85em;
+  margin-top: 3px;
+  line-height: 1.2;
+}
+
+/* ====================================
+   DRESS CODE
+   Third row, right of áo dài icons
+==================================== */
+
+.dress {
+  left: 28%;
+  top: 57.2%;
+  width: 62%;
+  height: 7.2%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ====================================
+   GREEN GOOGLE MAPS BUTTON
+
+   Transparent clickable area over
+   the green button in details.png.
+==================================== */
+
+.map-link {
+  position: absolute;
+  left: 37.5%;
+  top: 69.4%;
+  width: 25%;
+  height: 5.5%;
+
+  padding: 0;
+  border: none;
+  border-radius: 40px;
+  background: transparent;
+
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* ====================================
+   BACK BUTTON
+==================================== */
+
+.back-btn {
+  position: absolute;
+  right: 5%;
+  bottom: 2.5%;
+
+  padding: 7px 12px;
+  border: 1px solid #a8a38d;
+  border-radius: 20px;
+
+  background: rgba(255, 251, 244, 0.92);
+  color: #77775e;
+
+  font-family: Georgia, serif;
+  font-size: 11px;
+
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* ====================================
+   BUTTON ACCESSIBILITY
+==================================== */
+
+.language-btn:focus-visible,
+.map-link:focus-visible,
+.back-btn:focus-visible {
+  outline: 2px solid #8b7355;
+  outline-offset: 3px;
+}
+
+/* ====================================
+   FLOATING PETALS
+==================================== */
+
+.petal {
+  position: absolute;
+  top: -8%;
+  z-index: 4;
+
+  width: 7px;
+  height: 6px;
+
+  border-radius: 80% 0 80% 0;
+  background: #e9cfb5;
+  opacity: 0.45;
+
+  pointer-events: none;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translate(35px, 1100px) rotate(600deg);
   }
+}
 
-  html, body {
-    margin: 0;
-    min-height: 100%;
-  }
+/* ====================================
+   MOBILE
+==================================== */
 
-  body {
-    background: #f0ece6;
-    font-family: Georgia, "Times New Roman", serif;
-    color: #8b7355;
-  }
-
-  main {
-    min-height: 100svh;
-    display: grid;
-    place-items: center;
-    padding: 12px;
-  }
-
-  /* ===================================
-     MAIN INVITATION CARD
-     =================================== */
-
-  .card {
-    position: relative;
-    width: min(100%, 460px);
-    aspect-ratio: 3 / 5;
-    overflow: hidden;
-    border-radius: 22px;
-    background: #faf7f1;
-    box-shadow: 0 14px 40px rgba(85, 75, 55, 0.12);
-    isolation: isolate;
-  }
-
-  /* ===================================
-     BOTH INVITATION PAGES
-     =================================== */
-
-  .page {
-    position: absolute;
-    inset: 0;
-    transition:
-      opacity 1.1s ease,
-      transform 1.1s ease;
-  }
-
-  .page img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-  }
-
-  .cover {
-    z-index: 2;
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .details {
-    z-index: 1;
-    opacity: 0;
-    transform: scale(1.035);
-    pointer-events: none;
-  }
-
-  .card.open .cover {
-    opacity: 0;
-    transform: scale(1.035);
-    pointer-events: none;
-  }
-
-  .card.open .details {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-  }
-
-  /* ===================================
-     LANGUAGE BUTTONS ON COVER
-     ===================================
-
-     The words APRI and MỞ THIỆP
-     are already printed on cover.png.
-
-     These are transparent click areas.
-     =================================== */
-
-  .language-btn {
-    position: absolute;
-    top: 85.1%;
-    height: 3.4%;
-    z-index: 5;
-
-    border: none;
-    border-radius: 30px;
-    background: transparent;
-    cursor: pointer;
-  }
-
-  /* LEFT BUTTON: APRI */
-
-  .italian-btn {
-    left: 30.5%;
-    width: 15.5%;
-  }
-
-  /* RIGHT BUTTON: MỞ THIỆP */
-
-  .vietnamese-btn {
-    left: 49%;
-    width: 20%;
-  }
-
-  .language-btn:focus-visible,
-  .map-link:focus-visible {
-    outline: 2px solid #8b7355;
-    outline-offset: 3px;
-  }
-
-  /* ===================================
-     EDITABLE TEXT LAYER
-     =================================== */
-
-  .overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  /* ===================================
-     SHARED TEXT APPEARANCE
-
-     CHANGE FONT AND COLOR HERE
-     =================================== */
-
+@media (max-width: 420px) {
   .time,
   .location,
   .dress {
-    padding: 0;
-    margin: 0;
-
-    background: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(9px, 1.3vw, 12px);
-    font-weight: 400;
-    font-style: normal;
-    color: #8b7355;
-    line-height: 1.2;
-    text-align: center;
+    font-size: clamp(9px, 2.4vw, 11px);
   }
+}
 
-  /* ===================================
-     FIRST ROW: DATE AND TIME
-
-     Change top/left to move text.
-     =================================== */
-
-  .time {
-    position: absolute;
-
-    left: 27%;
-    top: 36.4%;
-    width: 63%;
-    height: 5.4%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
   }
+}
 
-  /* ===================================
-     SECOND ROW: LOCATION
-     =================================== */
-
-  .location {
-    position: absolute;
-
-    left: 45%;
-    top: 47.5%;
-    width: 45%;
-    height: 6.2%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .location small {
-    display: block;
-    font-size: 0.85em;
-    margin-top: 3px;
-    line-height: 1.2;
-  }
-
-  /* ===================================
-     THIRD ROW: DRESS CODE
-
-     ONE TEXT ONLY, NO HEADING
-     =================================== */
-
-  .dress {
-    position: absolute;
-
-    left: 27%;
-    top: 59.1%;
-    width: 63%;
-    height: 5.4%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* ===================================
-     GOOGLE MAPS BUTTON
-
-     Transparent click area over
-     the green button in details.png
-     =================================== */
-
-  .map-link {
-    position: absolute;
-
-    left: 23%;
-    top: 69.1%;
-    width: 54%;
-    height: 6.3%;
-
-    border: none;
-    border-radius: 40px;
-    background: transparent;
-    cursor: pointer;
-    pointer-events: auto;
-  }
-
-  /* ===================================
-     BACK BUTTON
-     =================================== */
-
-  .back-btn {
-    position: absolute;
-
-    right: 5%;
-    bottom: 2.5%;
-
-    padding: 7px 13px;
-
-    border: 1px solid #a8a38d;
-    border-radius: 20px;
-
-    background: rgba(250, 248, 242, 0.9);
-    color: #77775e;
-
-    font-family: Georgia, serif;
-    font-size: 11px;
-    cursor: pointer;
-    pointer-events: auto;
-  }
-
-  /* ===================================
-     FLOATING FLOWER PETALS
-     =================================== */
-
-  .petal {
-    position: absolute;
-    top: -8%;
-    z-index: 4;
-
-    width: 8px;
-    height: 6px;
-
-    border-radius: 80% 0 80% 0;
-    background: #e5c9b7;
-    opacity: 0.55;
-
-    pointer-events: none;
-    animation: fall linear infinite;
-  }
-
-  @keyframes fall {
-    to {
-      transform: translate(40px, 1100px) rotate(600deg);
-    }
-  }
-
-  /* ===================================
-     MOBILE SETTINGS
-     =================================== */
-
-  @media (max-width: 420px) {
-    .time,
-    .location,
-    .dress {
-      font-size: 9px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation: none !important;
-      transition: none !important;
-    }
-  }
 </style>
 </head>
 
@@ -328,107 +330,106 @@
 
 <main>
 
-  <div class="card" id="card">
+<div class="card" id="card">
 
-    <!-- =============================
-         PAGE 1: COVER
-         ============================= -->
+  <!-- =================================
+       PAGE 1: COVER
+  ================================= -->
 
-    <section class="page cover" id="coverPage">
+  <section class="page cover">
 
-      <img
-        src="cover.png"
-        alt="Matteo và Hoà - Lễ Hằng Thuận"
-      >
+    <img
+      src="cover.png"
+      alt="Lễ Hằng Thuận - Matteo và Hoà"
+    >
 
-      <!-- ITALIAN: APRI -->
-      <button
-        type="button"
-        class="language-btn italian-btn"
-        onclick="openInvitation('it')"
-        aria-label="Apri invito in italiano"
-      ></button>
+    <!-- APRI -->
+    <button
+      type="button"
+      class="language-btn italian-btn"
+      onclick="openInvitation('it')"
+      aria-label="Apri invito in italiano"
+    ></button>
 
-      <!-- VIETNAMESE: MỞ THIỆP -->
-      <button
-        type="button"
-        class="language-btn vietnamese-btn"
-        onclick="openInvitation('vi')"
-        aria-label="Mở thiệp tiếng Việt"
-      ></button>
+    <!-- MỞ THIỆP -->
+    <button
+      type="button"
+      class="language-btn vietnamese-btn"
+      onclick="openInvitation('vi')"
+      aria-label="Mở thiệp bằng tiếng Việt"
+    ></button>
 
-    </section>
+  </section>
 
-    <!-- =============================
-         PAGE 2: INVITATION DETAILS
-         ============================= -->
+  <!-- =================================
+       PAGE 2: INVITATION DETAILS
+  ================================= -->
 
-    <section class="page details" id="detailsPage">
+  <section class="page details">
 
-      <img
-        src="details.png"
-        alt="Duyên Lành Hội Ngộ - Chi tiết buổi lễ"
-      >
+    <img
+      src="details.png"
+      alt="Duyên Lành Hội Ngộ"
+    >
 
-      <div class="overlay">
+    <div class="overlay">
 
-        <!-- DATE AND TIME -->
-        <div
-          class="time"
-          id="timeText"
-        ></div>
+      <!-- DATE + TIME -->
+      <div
+        class="time"
+        id="timeText"
+      ></div>
 
-        <!-- LOCATION -->
-        <div class="location">
+      <!-- LOCATION -->
+      <div class="location">
 
-          <span id="venueText"></span>
+        <span id="venueText"></span>
 
-          <small id="addressText"></small>
-
-        </div>
-
-        <!-- DRESS CODE: ONE LINE ONLY -->
-        <div
-          class="dress"
-          id="dressText"
-        ></div>
-
-        <!-- GOOGLE MAPS -->
-        <button
-          type="button"
-          class="map-link"
-          onclick="openMap()"
-          aria-label="Bản đồ chỉ đường"
-        ></button>
-
-        <!-- BACK TO COVER -->
-        <button
-          type="button"
-          class="back-btn"
-          onclick="showCover()"
-        >
-          ← Quay lại
-        </button>
+        <small id="addressText"></small>
 
       </div>
 
-    </section>
+      <!-- DRESS CODE -->
+      <div
+        class="dress"
+        id="dressText"
+      ></div>
 
-  </div>
+      <!-- MAP BUTTON -->
+      <button
+        type="button"
+        class="map-link"
+        onclick="openMap()"
+        aria-label="Open directions in Google Maps"
+      ></button>
+
+      <!-- BACK -->
+      <button
+        type="button"
+        class="back-btn"
+        id="backButton"
+        onclick="showCover()"
+      >
+        ← Quay lại
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
 
 </main>
 
 <script>
 
-/* =====================================
-   EDIT ALL WEDDING INFORMATION HERE
-   ===================================== */
+/* ====================================
+   EDIT YOUR WEDDING INFORMATION HERE
+==================================== */
 
 const INVITATION_DETAILS = {
 
-  /* ===================================
-     VIETNAMESE VERSION
-     =================================== */
+  /* VIETNAMESE */
 
   vi: {
 
@@ -444,9 +445,7 @@ const INVITATION_DETAILS = {
 
   },
 
-  /* ===================================
-     ITALIAN VERSION
-     =================================== */
+  /* ITALIAN */
 
   it: {
 
@@ -462,22 +461,21 @@ const INVITATION_DETAILS = {
 
   },
 
-  /* GOOGLE MAPS LINK FOR BOTH LANGUAGES */
+  /* GOOGLE MAPS URL FOR BOTH LANGUAGES */
 
   googleMapsUrl: ""
 
 };
 
-/* =====================================
+/* ====================================
    WEBSITE FUNCTIONS
-   NO NEED TO EDIT BELOW
-   ===================================== */
+==================================== */
 
 const card = document.getElementById("card");
 
 let currentLanguage = "vi";
 
-/* UPDATE TEXT FOR SELECTED LANGUAGE */
+/* CHANGE TEXT TO SELECTED LANGUAGE */
 
 function updateInvitationLanguage() {
 
@@ -495,11 +493,16 @@ function updateInvitationLanguage() {
   document.getElementById("dressText").textContent =
     info.dresscode;
 
+  document.getElementById("backButton").textContent =
+    currentLanguage === "it"
+      ? "← Indietro"
+      : "← Quay lại";
+
   document.documentElement.lang = currentLanguage;
 
 }
 
-/* OPEN INVITATION IN SELECTED LANGUAGE */
+/* OPEN ITALIAN OR VIETNAMESE INVITATION */
 
 function openInvitation(language) {
 
@@ -514,12 +517,10 @@ function openInvitation(language) {
 /* BACK TO COVER */
 
 function showCover() {
-
   card.classList.remove("open");
-
 }
 
-/* OPEN GOOGLE MAPS */
+/* GOOGLE MAPS */
 
 function openMap() {
 
@@ -545,17 +546,11 @@ function openMap() {
 
 }
 
-/* KEYBOARD NAVIGATION */
+/* INITIALIZE */
 
-document.addEventListener("keydown", function(e) {
+updateInvitationLanguage();
 
-  if (e.key === "Escape" || e.key === "ArrowLeft") {
-    showCover();
-  }
-
-});
-
-/* FLOATING FLOWER PETALS */
+/* FLOATING PETALS */
 
 if (
   !window.matchMedia(
@@ -583,10 +578,6 @@ if (
   }
 
 }
-
-/* INITIALIZE VIETNAMESE TEXT */
-
-updateInvitationLanguage();
 
 </script>
 
