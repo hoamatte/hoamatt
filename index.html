@@ -88,9 +88,9 @@ main {
 }
 
 .mask {
-  background: #faf8f0;
-  box-shadow: 0 0 15px 8px #faf8f0;
-  border-radius: 8px;
+  background: transparent;
+  box-shadow: none;
+  border-radius: none;
 }
 
 .time {
@@ -99,8 +99,8 @@ main {
   top: 38.8%;
   width: 47%;
   min-height: 6%;
-  padding: 0% 1%;
-  font-size: clamp(8px, 2.65vw, 17px);
+  padding: 0% 0%;
+  font-size: clamp(5px, 1.65vw, 12px);
 }
 
 .location {
@@ -109,15 +109,15 @@ main {
   top: 51%;
   width: 43%;
   min-height: 7%;
-  padding: 0% 1%;
-  font-size: clamp(8px, 2.35vw, 15px);
+  padding: 0% 0%;
+  font-size: clamp(5px, 1.65vw, 12px);
   line-height: 1.4;
 }
 
 .location small {
   display: block;
   font-size: .78em;
-  margin-top: 3px;
+  margin-top: 1px;
 }
 
 .dress-icon {
@@ -147,7 +147,7 @@ main {
   width: 54%;
   min-height: 7%;
   padding: 0% 1%;
-  font-size: clamp(8px, 2.5vw, 16px);
+  font-size: clamp(5px, 1.65vw, 12px);
   line-height: 1.4;
 }
 
@@ -247,6 +247,11 @@ main {
       <div class="location mask">
         <span id="venueText"></span>
         <small id="addressText"></small>
+      </div>
+
+        <!-- DRESS CODE TEXT -->
+      <div class="dress mask">
+        <div id="dressText"></div>
       </div>
 
 
