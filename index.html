@@ -1,22 +1,24 @@
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Matteo ♡ Hoà | Lễ Hằng Thuận</title>
+<title>Matteo ♡ Hoà — Lễ Hằng Thuận</title>
 
 <style>
-/* ==========================================
-   COLORS AND FONTS
-   CHANGE THESE TO CUSTOMIZE THE WEBSITE
-========================================== */
+
+/* =====================================
+   1. COLORS AND FONTS
+   EDIT HERE
+===================================== */
 
 :root {
-  --olive: #606b39;
-  --brown: #8b7355;
-  --cream: #fffaf5;
+  --olive: #59653a;
+  --brown: #856b4e;
+  --cream: #fffaf3;
   --font: Georgia, "Times New Roman", serif;
 }
 
@@ -30,30 +32,29 @@ html, body {
 }
 
 body {
-  background: #f6f2e9;
-  font-family: var(--font);
+  background: #f5f0e8;
   color: var(--olive);
+  font-family: var(--font);
 }
 
 main {
   min-height: 100svh;
   display: grid;
   place-items: center;
-  padding: 10px;
+  padding: 8px;
 }
 
-/* ==========================================
-   CARD SIZE
-
-   Designed for images with a 3:5 ratio.
-   If your images use another ratio,
-   change aspect-ratio here.
-========================================== */
+/* =====================================
+   2. IMAGE CONTAINER
+===================================== */
 
 .card {
   position: relative;
-  width: min(100%, 480px);
-  aspect-ratio: 3 / 5;
+  width: min(
+    100%,
+    min(490px, calc((100svh - 16px) * .6082))
+  );
+  aspect-ratio: 978 / 1608;
   overflow: hidden;
   border-radius: 6% / 3.6%;
   background: var(--cream);
@@ -61,9 +62,9 @@ main {
   container-type: inline-size;
 }
 
-/* ==========================================
-   PAGE TRANSITIONS
-========================================== */
+/* =====================================
+   3. PAGE TRANSITIONS
+===================================== */
 
 .page {
   position: absolute;
@@ -71,12 +72,12 @@ main {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: scale(1.02);
+  transform: scale(1.015);
 
   transition:
-    opacity 0.75s ease,
-    transform 0.75s ease,
-    visibility 0.75s;
+    opacity .65s ease,
+    transform .65s ease,
+    visibility .65s;
 }
 
 .page.active {
@@ -86,74 +87,80 @@ main {
   transform: scale(1);
 }
 
-.page img.artwork {
+.artwork {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: fill;
 }
 
-.page-content {
+.overlay {
   position: absolute;
   inset: 0;
 }
 
-/* ==========================================
-   PAGE 1: COVER BUTTONS
+button,
+input,
+textarea {
+  font-family: var(--font);
+}
 
-   Transparent buttons over APRI and
-   MỞ THIỆP already printed in cover.png
-========================================== */
-
-.cover-button {
-  position: absolute;
-  top: 88%;
-  height: 4%;
-  padding: 0;
-  border: none;
-  border-radius: 30px;
-  background: transparent;
+button {
   cursor: pointer;
 }
 
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--olive);
+  outline-offset: 2px;
+}
+
+/* =====================================
+   4. COVER PAGE
+   APRI / MỞ THIỆP
+===================================== */
+
+.cover-action {
+  position: absolute;
+  top: 87.5%;
+  height: 5%;
+  border: none;
+  background: transparent;
+  border-radius: 30px;
+}
+
 #openItalian {
-  left: 31.8%;
-  width: 16%;
+  left: 31%;
+  width: 18%;
 }
 
 #openVietnamese {
-  left: 50.8%;
-  width: 21%;
+  left: 50%;
+  width: 24%;
 }
 
-/* ==========================================
-   PAGE 2: INVITATION DETAILS
+/* =====================================
+   5. PAGE 2: CEREMONY DETAILS
+===================================== */
 
-   Text has NO background.
-========================================== */
-
-.detail-field {
+.detail-text {
   position: absolute;
-  padding: 0;
-  margin: 0;
-  border: none;
   background: transparent;
-  box-shadow: none;
-
+  border: none;
   color: var(--brown);
-  font-family: var(--font);
-  font-weight: 400;
-  font-style: normal;
-  font-size: clamp(9px, 2.55cqw, 13px);
-  line-height: 1.3;
+
+  font-size: clamp(9px, 2.5cqw, 14px);
+  line-height: 1.25;
   text-align: center;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 3px;
 }
 
-/* DATE + TIME */
+/* DATE AND TIME */
 
 #dateTimeText {
   left: 28%;
@@ -166,10 +173,11 @@ main {
 
 #locationField {
   left: 44%;
-  top: 45.7%;
-  width: 47%;
-  height: 8.6%;
+  top: 46.3%;
+  width: 31%;
+  height: 7%;
   flex-direction: column;
+  gap: 3px;
 }
 
 #venueText {
@@ -177,164 +185,175 @@ main {
 }
 
 #addressText {
-  font-size: 0.85em;
-  margin-top: 3px;
+  font-size: .86em;
 }
 
 /* DRESS CODE */
 
 #dressText {
   left: 28%;
-  top: 57.2%;
+  top: 58.2%;
   width: 62%;
-  height: 7.2%;
+  height: 7%;
 }
 
-/* GOOGLE MAPS BUTTON */
+/* =====================================
+   6. SMALL MAP BUTTON
+   RIGHT SIDE OF LOCATION ROW
+
+   Transparent clickable area over
+   the small green button in details.png
+===================================== */
 
 #mapButton {
   position: absolute;
-  left: 37%;
-  top: 69.4%;
-  width: 26%;
-  height: 5.7%;
+
+  left: 77%;
+  top: 47.5%;
+
+  width: 11%;
+  height: 4%;
+
   border: none;
-  border-radius: 40px;
+  border-radius: 99px;
   background: transparent;
-  cursor: pointer;
 }
 
-/* CONTINUE TO RSVP */
+/* =====================================
+   7. PAGE 2: GO TO RSVP
+
+   ABOVE BOTTOM LOTUS
+===================================== */
 
 #goRSVP {
   position: absolute;
-  left: 27%;
-  bottom: 5.4%;
-  width: 46%;
-  min-height: 4%;
 
-  padding: 7px 10px;
+  left: 26%;
+  top: 76%;
+
+  width: 48%;
+  height: 4.6%;
+
+  padding: 0 5px;
   border: 1px solid var(--olive);
-  border-radius: 25px;
+  border-radius: 30px;
 
-  background: rgba(255, 250, 245, 0.92);
+  background: rgba(255, 250, 243, .92);
   color: var(--olive);
 
-  font-family: var(--font);
-  font-size: clamp(10px, 2.7cqw, 13px);
-  cursor: pointer;
+  font-size: clamp(10px, 2.8cqw, 15px);
 }
 
-/* ==========================================
-   PAGE 3: RSVP TITLE
+/* BACK BUTTONS */
 
-   THIS TITLE IS NOT IN THE IMAGE.
+.back {
+  position: absolute;
+  right: 5%;
+  bottom: 2%;
 
-   It changes automatically according
-   to APRI or MỞ THIỆP.
-========================================== */
+  padding: 6px 11px;
+  border: 1px solid #9b967e;
+  border-radius: 20px;
+
+  background: rgba(255, 250, 243, .94);
+  color: var(--olive);
+
+  font-size: clamp(9px, 2.3cqw, 12px);
+}
+
+/* =====================================
+   8. PAGE 3: RSVP TITLE
+
+   TITLE IS HTML, NOT IN IMAGE.
+   LANGUAGE CHANGES AUTOMATICALLY.
+===================================== */
 
 .rsvp-title {
   position: absolute;
+
   top: 19%;
-  left: 12%;
-  width: 76%;
+  left: 9%;
+  width: 82%;
 
   margin: 0;
-  padding: 0;
-
   text-align: center;
-  font-family: var(--font);
-  font-size: clamp(15px, 4.1cqw, 21px);
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: 0.08em;
-  line-height: 1.2;
 
   color: var(--olive);
-  background: transparent;
+  font-size: clamp(14px, 4.2cqw, 23px);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: .07em;
+  line-height: 1.2;
 
+  background: transparent;
   pointer-events: none;
 }
 
-/* ==========================================
-   RSVP FIELDS
-
-   Aligned with the five illustrated
-   blank fields in rsvp.png.
-========================================== */
+/* =====================================
+   9. RSVP INPUT FIELDS
+   NO WHITE BACKGROUNDS
+===================================== */
 
 .rsvp-input,
 .rsvp-message {
   position: absolute;
-  left: 20.5%;
-  width: 65%;
 
-  padding: 0 8px;
+  left: 21%;
+  width: 64%;
+
   margin: 0;
+  padding: 0 7px;
 
   border: none;
   outline: none;
-  background: transparent;
   box-shadow: none;
+  background: transparent;
 
   color: var(--olive);
-  font-family: var(--font);
-  font-size: clamp(10px, 2.65cqw, 14px);
+  font-size: clamp(10px, 2.6cqw, 14px);
 }
 
 .rsvp-input::placeholder,
 .rsvp-message::placeholder {
-  color: #948b79;
-  opacity: 0.85;
+  color: #8e8979;
+  opacity: 1;
 }
 
-/* NAME */
+/* FIELD 1: NAME */
 
 #guestName {
   top: 53.6%;
-  height: 2.6%;
+  height: 2.7%;
 }
 
-/* DEPARTURE LOCATION */
+/* FIELD 2: NUMBER OF GUESTS */
 
-#departure {
-  top: 64.3%;
-  height: 2.6%;
+#guestCountLabel {
+  position: absolute;
+
+  left: 21%;
+  top: 58.7%;
+  width: 43%;
+  height: 2.8%;
+
+  display: flex;
+  align-items: center;
+
+  color: #8e8979;
+  font-size: clamp(9px, 2.5cqw, 13px);
+  pointer-events: none;
 }
 
-/* MESSAGE */
-
-#guestMessage {
-  top: 69.4%;
-  height: 5.1%;
-
-  resize: none;
-  padding-top: 4px;
-  line-height: 1.2;
-  font-size: clamp(8px, 2.15cqw, 11px);
-}
-
-/* DIETARY NEEDS */
-
-#dietary {
-  top: 77.1%;
-  height: 2.5%;
-}
-
-/* ==========================================
-   RSVP GUEST COUNTER
-
-   Working minus and plus controls
-   in the second blank illustrated row.
-========================================== */
+/* MINUS / PLUS */
 
 .guest-counter {
   position: absolute;
-  left: 68%;
-  top: 58.8%;
+
+  left: 67%;
+  top: 58.7%;
+
   width: 18%;
-  height: 3.2%;
+  height: 2.8%;
 
   display: flex;
   align-items: center;
@@ -344,120 +363,116 @@ main {
 }
 
 .guest-counter button {
-  width: 30%;
-  height: 100%;
-
-  padding: 0;
   border: none;
   background: transparent;
-
   color: var(--olive);
-  font-size: clamp(15px, 4cqw, 21px);
-  cursor: pointer;
+
+  font-size: clamp(17px, 4cqw, 22px);
+  padding: 0 3px;
 }
 
-#guestCount {
+.guest-counter span {
   font-size: clamp(11px, 3cqw, 15px);
-  min-width: 1.5em;
-  text-align: center;
 }
 
-#guestCountLabel {
-  position: absolute;
-  left: 21%;
-  top: 59.5%;
-  width: 44%;
+/* FIELD 3: DEPARTURE */
 
-  font-size: clamp(9px, 2.5cqw, 12px);
-  color: #948b79;
-
-  pointer-events: none;
+#departure {
+  top: 64.3%;
+  height: 2.7%;
 }
 
-/* ==========================================
-   RSVP SUBMIT BUTTON
+/* FIELD 4: MESSAGE */
 
-   Transparent overlay over the
-   illustrated green button.
-========================================== */
+#guestMessage {
+  top: 69.2%;
+  height: 5.4%;
+
+  resize: none;
+  padding-top: 5px;
+
+  font-size: clamp(9px, 2.25cqw, 12px);
+  line-height: 1.2;
+}
+
+/* FIELD 5: DIETARY / ALLERGIES */
+
+#dietary {
+  top: 77.1%;
+  height: 2.7%;
+}
+
+/* =====================================
+   10. RSVP SUBMIT BUTTON
+
+   Text appears over the illustrated
+   green button.
+===================================== */
 
 #submitRSVP {
   position: absolute;
-  left: 27%;
-  top: 84.6%;
-  width: 46%;
-  height: 5.1%;
 
-  padding: 0 8%;
+  left: 27%;
+  top: 84.3%;
+
+  width: 46%;
+  height: 5%;
+
+  padding: 0 12% 0 3%;
+
   border: none;
   border-radius: 40px;
   background: transparent;
 
-  color: #fffaf0;
-  font-family: var(--font);
+  color: #fffaf2;
   font-size: clamp(10px, 2.7cqw, 14px);
-  letter-spacing: 0.02em;
   text-align: center;
-
-  cursor: pointer;
 }
 
 #submitRSVP:disabled {
+  opacity: .65;
   cursor: wait;
-  opacity: 0.7;
 }
 
-/* ==========================================
-   BACK BUTTONS
-========================================== */
+/* SUBMISSION STATUS */
 
-.back-button {
+#rsvpStatus {
   position: absolute;
-  right: 5%;
-  bottom: 2.2%;
 
-  padding: 6px 10px;
-  border: 1px solid #a8a38d;
-  border-radius: 20px;
+  top: 90%;
+  left: 12%;
+  width: 76%;
 
-  background: rgba(255, 250, 245, 0.94);
+  font-size: clamp(9px, 2.3cqw, 12px);
+  text-align: center;
   color: var(--olive);
-
-  font-family: var(--font);
-  font-size: clamp(9px, 2.4cqw, 12px);
-  cursor: pointer;
 }
 
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--olive);
-  outline-offset: 2px;
-}
-
-/* ==========================================
-   FLOATING PETALS
-========================================== */
+/* =====================================
+   11. FLOATING PETALS
+===================================== */
 
 .petal {
   position: absolute;
-  z-index: 8;
-  top: -5%;
+  z-index: 5;
+  top: -3%;
 
   width: 7px;
   height: 5px;
 
-  background: #e8cfb7;
-  opacity: 0.35;
+  background: #e8d0b6;
+  opacity: .35;
   border-radius: 80% 0 80% 0;
 
   pointer-events: none;
-  animation: petalFall linear infinite;
+  animation: fall linear infinite;
 }
 
-@keyframes petalFall {
+@keyframes fall {
   to {
-    transform: translate(30px, 900px) rotate(600deg);
+    transform:
+      translate(30px, 900px)
+      rotate(500deg);
   }
 }
 
@@ -468,241 +483,273 @@ textarea:focus-visible {
 
   .petal {
     display: none;
-    animation: none;
   }
 }
+
 </style>
 </head>
 
 <body>
 
 <main>
+
 <div class="card" id="card">
 
-  <!-- ======================================
-       PAGE 1: COVER
-  ======================================= -->
+<!-- =====================================
+     PAGE 1: COVER
+===================================== -->
 
-  <section class="page active" id="coverPage">
+<section
+  class="page active"
+  id="coverPage"
+  aria-hidden="false"
+>
 
-    <img
-      class="artwork"
-      src="cover.png"
-      alt="Lễ Hằng Thuận - Matteo và Hoà"
+  <img
+    class="artwork"
+    src="cover.png"
+    alt="Lễ Hằng Thuận — Matteo và Hoà"
+  >
+
+  <div class="overlay">
+
+    <!-- ITALIAN -->
+    <button
+      class="cover-action"
+      id="openItalian"
+      type="button"
+      aria-label="Apri l'invito in italiano"
+      onclick="openInvitation('it')"
+    ></button>
+
+    <!-- VIETNAMESE -->
+    <button
+      class="cover-action"
+      id="openVietnamese"
+      type="button"
+      aria-label="Mở thiệp tiếng Việt"
+      onclick="openInvitation('vi')"
+    ></button>
+
+  </div>
+
+</section>
+
+<!-- =====================================
+     PAGE 2: DETAILS
+===================================== -->
+
+<section
+  class="page"
+  id="detailsPage"
+  aria-hidden="true"
+  inert
+>
+
+  <img
+    class="artwork"
+    src="details.png"
+    alt="Duyên Lành Hội Ngộ"
+  >
+
+  <div class="overlay">
+
+    <!-- DATE AND TIME -->
+    <div
+      class="detail-text"
+      id="dateTimeText"
+    ></div>
+
+    <!-- LOCATION -->
+    <div
+      class="detail-text"
+      id="locationField"
+    >
+      <span id="venueText"></span>
+      <small id="addressText"></small>
+    </div>
+
+    <!-- SMALL MAP BUTTON -->
+    <button
+      type="button"
+      id="mapButton"
+      onclick="openMap()"
+      aria-label="Open map directions"
+    ></button>
+
+    <!-- DRESS CODE -->
+    <div
+      class="detail-text"
+      id="dressText"
+    ></div>
+
+    <!-- RSVP BUTTON -->
+    <button
+      type="button"
+      id="goRSVP"
+      onclick="showPage('rsvpPage')"
+    ></button>
+
+    <!-- BACK -->
+    <button
+      type="button"
+      class="back"
+      id="backToCover"
+      onclick="showPage('coverPage')"
+    ></button>
+
+  </div>
+
+</section>
+
+<!-- =====================================
+     PAGE 3: RSVP
+===================================== -->
+
+<section
+  class="page"
+  id="rsvpPage"
+  aria-hidden="true"
+  inert
+>
+
+  <img
+    class="artwork"
+    src="rsvp.png"
+    alt="Wedding attendance form"
+  >
+
+  <form
+    class="overlay"
+    id="rsvpForm"
+    onsubmit="submitRSVP(event)"
+  >
+
+    <!-- LANGUAGE-SWITCHING TITLE -->
+    <h2
+      class="rsvp-title"
+      id="rsvpTitle"
+    ></h2>
+
+    <!-- 1. NAME -->
+    <input
+      class="rsvp-input"
+      id="guestName"
+      name="name"
+      type="text"
+      autocomplete="name"
+      maxlength="150"
+      required
+      aria-label="Guest name"
     >
 
-    <div class="page-content">
+    <!-- 2. GUEST COUNTER -->
+    <span id="guestCountLabel"></span>
 
-      <!-- ITALIAN -->
-      <button
-        id="openItalian"
-        class="cover-button"
-        type="button"
-        onclick="openInvitation('it')"
-        aria-label="Apri invito in italiano"
-      ></button>
+    <div class="guest-counter">
 
-      <!-- VIETNAMESE -->
       <button
-        id="openVietnamese"
-        class="cover-button"
         type="button"
-        onclick="openInvitation('vi')"
-        aria-label="Mở thiệp bằng tiếng Việt"
-      ></button>
+        id="minusGuest"
+        onclick="changeGuests(-1)"
+        aria-label="Remove guest"
+      >−</button>
+
+      <span id="guestCount">1</span>
+
+      <button
+        type="button"
+        id="plusGuest"
+        onclick="changeGuests(1)"
+        aria-label="Add guest"
+      >+</button>
 
     </div>
-  </section>
 
-  <!-- ======================================
-       PAGE 2: DETAILS
-  ======================================= -->
-
-  <section class="page" id="detailsPage">
-
-    <img
-      class="artwork"
-      src="details.png"
-      alt="Duyên Lành Hội Ngộ"
+    <!-- 3. DEPARTURE LOCATION -->
+    <input
+      class="rsvp-input"
+      id="departure"
+      name="departure"
+      type="text"
+      maxlength="150"
+      aria-label="Departure location"
     >
 
-    <div class="page-content">
+    <!-- 4. OPTIONAL MESSAGE -->
+    <textarea
+      class="rsvp-message"
+      id="guestMessage"
+      name="message"
+      maxlength="1000"
+      aria-label="Additional guests, questions and requests"
+    ></textarea>
 
-      <!-- DATE AND TIME -->
-      <div
-        class="detail-field"
-        id="dateTimeText"
-      ></div>
-
-      <!-- LOCATION -->
-      <div
-        class="detail-field"
-        id="locationField"
-      >
-        <span id="venueText"></span>
-        <small id="addressText"></small>
-      </div>
-
-      <!-- DRESS CODE -->
-      <div
-        class="detail-field"
-        id="dressText"
-      ></div>
-
-      <!-- GOOGLE MAPS -->
-      <button
-        type="button"
-        id="mapButton"
-        onclick="openMap()"
-        aria-label="Google Maps directions"
-      ></button>
-
-      <!-- GO TO RSVP -->
-      <button
-        type="button"
-        id="goRSVP"
-        onclick="showPage('rsvpPage')"
-      ></button>
-
-      <!-- BACK -->
-      <button
-        type="button"
-        class="back-button"
-        id="backToCover"
-        onclick="showPage('coverPage')"
-      ></button>
-
-    </div>
-  </section>
-
-  <!-- ======================================
-       PAGE 3: RSVP
-  ======================================= -->
-
-  <section class="page" id="rsvpPage">
-
-    <img
-      class="artwork"
-      src="rsvp.png"
-      alt="Wedding attendance confirmation"
+    <!-- 5. FOOD / ALLERGIES -->
+    <input
+      class="rsvp-input"
+      id="dietary"
+      name="dietary"
+      type="text"
+      maxlength="300"
+      aria-label="Dietary needs and allergies"
     >
 
-    <form
-      class="page-content"
-      id="rsvpForm"
-      onsubmit="submitRSVP(event)"
-    >
+    <!-- SUBMIT -->
+    <button
+      type="submit"
+      id="submitRSVP"
+    ></button>
 
-      <!-- DYNAMIC TITLE -->
-      <h2
-        id="rsvpTitle"
-        class="rsvp-title"
-      ></h2>
+    <div
+      id="rsvpStatus"
+      role="status"
+      aria-live="polite"
+    ></div>
 
-      <!-- 1. GUEST NAME -->
-      <input
-        class="rsvp-input"
-        type="text"
-        id="guestName"
-        name="name"
-        required
-        maxlength="150"
-        autocomplete="name"
-      >
+    <!-- BACK -->
+    <button
+      type="button"
+      class="back"
+      id="backToDetails"
+      onclick="showPage('detailsPage')"
+    ></button>
 
-      <!-- 2. NUMBER OF GUESTS -->
-      <span id="guestCountLabel"></span>
+  </form>
 
-      <div class="guest-counter">
-
-        <button
-          type="button"
-          onclick="changeGuests(-1)"
-          aria-label="Remove one guest"
-        >−</button>
-
-        <span id="guestCount">1</span>
-
-        <button
-          type="button"
-          onclick="changeGuests(1)"
-          aria-label="Add one guest"
-        >+</button>
-
-      </div>
-
-      <!-- 3. DEPARTURE LOCATION -->
-      <input
-        class="rsvp-input"
-        type="text"
-        id="departure"
-        name="departure"
-        maxlength="150"
-      >
-
-      <!-- 4. OPTIONAL MESSAGE -->
-      <textarea
-        class="rsvp-message"
-        id="guestMessage"
-        name="message"
-        maxlength="1000"
-      ></textarea>
-
-      <!-- 5. DIETARY NEEDS / ALLERGIES -->
-      <input
-        class="rsvp-input"
-        type="text"
-        id="dietary"
-        name="dietary"
-        maxlength="300"
-      >
-
-      <!-- SUBMIT -->
-      <button
-        type="submit"
-        id="submitRSVP"
-      ></button>
-
-      <!-- BACK -->
-      <button
-        type="button"
-        class="back-button"
-        id="backToDetails"
-        onclick="showPage('detailsPage')"
-      ></button>
-
-    </form>
-  </section>
+</section>
 
 </div>
 </main>
 
 <script>
-/* ==========================================
-   EDIT YOUR INFORMATION HERE
-========================================== */
+
+/* =====================================
+   12. EDIT YOUR INVITATION INFORMATION
+===================================== */
 
 const SETTINGS = {
 
-  /* GOOGLE MAPS LINK */
+  // Paste Google Maps link here
   googleMapsUrl: "",
 
-  /* GOOGLE APPS SCRIPT URL */
+  // Paste Google Apps Script /exec URL here
   googleScriptUrl: "",
 
-  /* ======================================
-     VIETNAMESE
-  ====================================== */
+  /* =================================
+     VIETNAMESE VERSION
+  ================================= */
 
   vi: {
 
     date: "Ngày / Tháng / Năm",
     time: "Giờ bắt đầu",
+
     venue: "Tên chùa / Địa điểm",
     address: "Địa chỉ đầy đủ",
+
     dresscode: "Áo dài truyền thống",
 
-    /* DYNAMIC RSVP TITLE */
     rsvpTitle: "XÁC NHẬN THAM DỰ",
 
     nextButton: "XÁC NHẬN THAM DỰ →",
@@ -711,6 +758,7 @@ const SETTINGS = {
 
     name: "Họ và tên",
     guests: "Số lượng tham dự",
+
     departure: "Bạn khởi hành từ đâu?",
 
     messageHint:
@@ -720,24 +768,35 @@ const SETTINGS = {
       "Yêu cầu ăn uống / Dị ứng (nếu có)",
 
     sending: "Đang gửi...",
-    success: "Cảm ơn bạn đã xác nhận tham dự!",
-    error: "Không thể gửi RSVP. Vui lòng thử lại.",
-    noScript: "Chưa kết nối Google Sheets."
+
+    sent:
+      "Đã gửi phản hồi. Vui lòng kiểm tra Google Sheets để xác nhận.",
+
+    error:
+      "Không thể gửi. Vui lòng thử lại.",
+
+    noScript:
+      "Chưa kết nối Google Sheets.",
+
+    noMap:
+      "Chưa có liên kết Google Maps."
+
   },
 
-  /* ======================================
-     ITALIAN
-  ====================================== */
+  /* =================================
+     ITALIAN VERSION
+  ================================= */
 
   it: {
 
     date: "Data della cerimonia",
     time: "Orario",
+
     venue: "Nome del tempio",
     address: "Indirizzo completo",
+
     dresscode: "Abito tradizionale",
 
-    /* DYNAMIC RSVP TITLE */
     rsvpTitle: "CONFERMA PRESENZA",
 
     nextButton: "CONFERMA PRESENZA →",
@@ -746,6 +805,7 @@ const SETTINGS = {
 
     name: "Nome e cognome",
     guests: "Numero di partecipanti",
+
     departure: "Da dove partirai?",
 
     messageHint:
@@ -755,47 +815,56 @@ const SETTINGS = {
       "Esigenze alimentari / Allergie (se presenti)",
 
     sending: "Invio in corso...",
-    success: "Grazie per aver confermato la tua presenza!",
-    error: "Impossibile inviare la risposta. Riprova.",
-    noScript: "Google Sheets non è ancora collegato."
+
+    sent:
+      "Risposta inviata. Controlla Google Sheets per confermare la registrazione.",
+
+    error:
+      "Invio non riuscito. Riprova.",
+
+    noScript:
+      "Google Sheets non è ancora collegato.",
+
+    noMap:
+      "Il link di Google Maps non è disponibile."
+
   }
+
 };
 
-/* ==========================================
-   STATE
-========================================== */
+/* =====================================
+   13. WEBSITE FUNCTIONS
+===================================== */
+
+const $ = id => document.getElementById(id);
 
 let currentLanguage = "vi";
 let guestCount = 1;
 
-function languageText() {
-  return SETTINGS[currentLanguage];
-}
+const t = () => SETTINGS[currentLanguage];
 
-/* ==========================================
-   PAGE NAVIGATION
-========================================== */
+/* PAGE NAVIGATION */
 
-function showPage(pageId) {
+function showPage(id) {
 
   document.querySelectorAll(".page").forEach(page => {
 
-    const active = page.id === pageId;
+    const active = page.id === id;
 
     page.classList.toggle("active", active);
-    page.setAttribute("aria-hidden", String(!active));
 
-    if ("inert" in page) {
-      page.inert = !active;
-    }
+    page.setAttribute(
+      "aria-hidden",
+      String(!active)
+    );
+
+    page.inert = !active;
 
   });
 
 }
 
-/* ==========================================
-   OPEN ITALIAN OR VIETNAMESE
-========================================== */
+/* OPEN LANGUAGE VERSION */
 
 function openInvitation(language) {
 
@@ -807,163 +876,152 @@ function openInvitation(language) {
 
 }
 
-/* ==========================================
-   UPDATE ALL TEXT INCLUDING RSVP TITLE
-========================================== */
+/* =====================================
+   14. LANGUAGE SWITCHING
+===================================== */
 
 function updateLanguage() {
 
-  const t = languageText();
+  const a = t();
 
   document.documentElement.lang = currentLanguage;
 
-  /* DETAILS */
+  /* PAGE 2 */
 
-  document.getElementById("dateTimeText").textContent =
-    t.date + " · " + t.time;
+  $("dateTimeText").textContent =
+    a.date + " · " + a.time;
 
-  document.getElementById("venueText").textContent =
-    t.venue;
+  $("venueText").textContent = a.venue;
 
-  document.getElementById("addressText").textContent =
-    t.address;
+  $("addressText").textContent = a.address;
 
-  document.getElementById("dressText").textContent =
-    t.dresscode;
+  $("dressText").textContent = a.dresscode;
 
-  /* RSVP TITLE */
+  $("goRSVP").textContent = a.nextButton;
 
-  document.getElementById("rsvpTitle").textContent =
-    t.rsvpTitle;
+  /* PAGE 3 TITLE */
 
-  /* BUTTONS */
+  $("rsvpTitle").textContent = a.rsvpTitle;
 
-  document.getElementById("goRSVP").textContent =
-    t.nextButton;
+  /* BACK BUTTONS */
 
-  document.getElementById("backToCover").textContent =
-    t.back;
+  $("backToCover").textContent = a.back;
 
-  document.getElementById("backToDetails").textContent =
-    t.back;
+  $("backToDetails").textContent = a.back;
 
-  document.getElementById("submitRSVP").textContent =
-    t.rsvpButton;
+  /* RSVP INPUT PLACEHOLDERS */
 
-  /* RSVP FIELDS */
+  $("guestName").placeholder = a.name;
 
-  document.getElementById("guestName").placeholder =
-    t.name;
+  $("guestCountLabel").textContent = a.guests;
 
-  document.getElementById("guestCountLabel").textContent =
-    t.guests;
+  $("departure").placeholder = a.departure;
 
-  document.getElementById("departure").placeholder =
-    t.departure;
+  $("guestMessage").placeholder = a.messageHint;
 
-  document.getElementById("guestMessage").placeholder =
-    t.messageHint;
+  $("dietary").placeholder = a.dietary;
 
-  document.getElementById("dietary").placeholder =
-    t.dietary;
+  /* SUBMIT BUTTON */
+
+  $("submitRSVP").textContent = a.rsvpButton;
+
+  $("rsvpStatus").textContent = "";
 
 }
 
-/* ==========================================
-   GOOGLE MAPS
-========================================== */
+/* =====================================
+   15. GOOGLE MAPS
+===================================== */
 
 function openMap() {
 
-  const url = SETTINGS.googleMapsUrl;
+  if (!SETTINGS.googleMapsUrl) {
 
-  if (!url) {
-
-    alert(
-      currentLanguage === "it"
-        ? "Il link di Google Maps non è disponibile."
-        : "Chưa có liên kết Google Maps."
-    );
+    alert(t().noMap);
 
     return;
+
   }
 
-  window.open(url, "_blank", "noopener,noreferrer");
+  window.open(
+    SETTINGS.googleMapsUrl,
+    "_blank",
+    "noopener,noreferrer"
+  );
 
 }
 
-/* ==========================================
-   GUEST COUNTER
-========================================== */
+/* =====================================
+   16. MINUS / PLUS GUEST COUNTER
+===================================== */
 
-function changeGuests(amount) {
+function changeGuests(delta) {
 
   guestCount = Math.max(
     1,
-    Math.min(20, guestCount + amount)
+    Math.min(20, guestCount + delta)
   );
 
-  document.getElementById("guestCount").textContent =
-    guestCount;
+  $("guestCount").textContent = guestCount;
+
+  $("minusGuest").disabled = guestCount === 1;
+
+  $("plusGuest").disabled = guestCount === 20;
 
 }
 
-/* ==========================================
-   SEND RSVP TO GOOGLE SHEETS
-========================================== */
+/* =====================================
+   17. SEND RSVP TO GOOGLE SHEETS
+===================================== */
 
 async function submitRSVP(event) {
 
   event.preventDefault();
 
-  const t = languageText();
+  const a = t();
 
-  const button = document.getElementById("submitRSVP");
+  const button = $("submitRSVP");
+  const status = $("rsvpStatus");
 
   if (!SETTINGS.googleScriptUrl) {
-    alert(t.noScript);
-    return;
-  }
 
-  const name = document.getElementById("guestName")
-    .value.trim();
+    status.textContent = a.noScript;
 
-  if (!name) {
-    document.getElementById("guestName").focus();
     return;
+
   }
 
   const payload = {
 
-    name: name,
+    name: $("guestName").value.trim(),
 
     guests: guestCount,
 
-    departure: document.getElementById("departure")
-      .value.trim(),
+    departure: $("departure").value.trim(),
 
-    message: document.getElementById("guestMessage")
-      .value.trim(),
+    message: $("guestMessage").value.trim(),
 
-    dietary: document.getElementById("dietary")
-      .value.trim(),
+    dietary: $("dietary").value.trim(),
 
     language: currentLanguage
 
   };
 
+  if (!payload.name) {
+
+    $("guestName").focus();
+
+    return;
+
+  }
+
   button.disabled = true;
-  button.textContent = t.sending;
+
+  button.textContent = a.sending;
+
+  status.textContent = "";
 
   try {
-
-    /*
-      Google Apps Script commonly does not allow
-      reading the response from GitHub Pages.
-
-      The request can be sent, but the browser
-      cannot verify that Google Sheets saved it.
-    */
 
     await fetch(SETTINGS.googleScriptUrl, {
 
@@ -979,46 +1037,43 @@ async function submitRSVP(event) {
 
     });
 
-    alert(
-      currentLanguage === "it"
-        ? "Risposta inviata. La registrazione su Google Sheets non può essere verificata automaticamente."
-        : "Đã gửi phản hồi. Hệ thống chưa thể tự xác minh dữ liệu đã được lưu vào Google Sheets."
-    );
+    /*
+      Important:
+      no-cors does not confirm that
+      Google Sheets saved the row.
+    */
 
-    document.getElementById("rsvpForm").reset();
-
-    guestCount = 1;
-
-    document.getElementById("guestCount").textContent =
-      "1";
+    status.textContent = a.sent;
 
   } catch (error) {
 
     console.error(error);
 
-    alert(t.error);
+    status.textContent = a.error;
 
   } finally {
 
     button.disabled = false;
 
-    button.textContent = t.rsvpButton;
+    button.textContent = a.rsvpButton;
 
   }
 
 }
 
-/* ==========================================
-   INITIALIZE
-========================================== */
+/* =====================================
+   18. INITIALIZATION
+===================================== */
 
 updateLanguage();
 
 showPage("coverPage");
 
-/* ==========================================
-   FLOATING PETALS
-========================================== */
+changeGuests(0);
+
+/* =====================================
+   19. FLOATING PETALS
+===================================== */
 
 if (
   !window.matchMedia(
@@ -1026,9 +1081,7 @@ if (
   ).matches
 ) {
 
-  const card = document.getElementById("card");
-
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 8; i++) {
 
     const petal = document.createElement("span");
 
@@ -1038,16 +1091,17 @@ if (
       Math.random() * 100 + "%";
 
     petal.style.animationDuration =
-      (9 + Math.random() * 8) + "s";
+      (10 + Math.random() * 8) + "s";
 
     petal.style.animationDelay =
       (-Math.random() * 16) + "s";
 
-    card.appendChild(petal);
+    $("card").appendChild(petal);
 
   }
 
 }
+
 </script>
 
 </body>
