@@ -1,25 +1,22 @@
 
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Matteo ♡ Hoà — Lễ Hằng Thuận</title>
+<title>Matteo ♡ Hoà | Lễ Hằng Thuận</title>
 
 <style>
-
-/* =====================================
-   1. COLORS AND FONTS
-   EDIT HERE
-===================================== */
-
+/* =========================================
+   COLORS AND FONTS — EDIT HERE
+========================================= */
 :root {
-  --olive: #59653a;
+  --olive: #263b2b;
+  --olive-light: #606b39;
   --brown: #856b4e;
-  --cream: #fffaf3;
-  --font: Georgia, "Times New Roman", serif;
+  --cream: #fffaf4;
+  --font-title: "Times New Roman", Georgia, serif;
+  --font-body: Georgia, "Times New Roman", serif;
 }
 
 * {
@@ -32,9 +29,9 @@ html, body {
 }
 
 body {
-  background: #f5f0e8;
+  background: #f6f1e9;
   color: var(--olive);
-  font-family: var(--font);
+  font-family: var(--font-body);
 }
 
 main {
@@ -44,17 +41,18 @@ main {
   padding: 8px;
 }
 
-/* =====================================
-   2. IMAGE CONTAINER
-===================================== */
-
+/* =========================================
+   IMAGE CONTAINER
+   Image ratio: 960 x 1578
+========================================= */
 .card {
   position: relative;
   width: min(
     100%,
-    min(490px, calc((100svh - 16px) * .6082))
+    490px,
+    calc((100svh - 16px) * 960 / 1578)
   );
-  aspect-ratio: 978 / 1608;
+  aspect-ratio: 960 / 1578;
   overflow: hidden;
   border-radius: 6% / 3.6%;
   background: var(--cream);
@@ -62,10 +60,9 @@ main {
   container-type: inline-size;
 }
 
-/* =====================================
-   3. PAGE TRANSITIONS
-===================================== */
-
+/* =========================================
+   PAGE TRANSITION
+========================================= */
 .page {
   position: absolute;
   inset: 0;
@@ -73,7 +70,6 @@ main {
   visibility: hidden;
   pointer-events: none;
   transform: scale(1.015);
-
   transition:
     opacity .65s ease,
     transform .65s ease,
@@ -102,7 +98,7 @@ main {
 button,
 input,
 textarea {
-  font-family: var(--font);
+  font-family: var(--font-body);
 }
 
 button {
@@ -112,22 +108,21 @@ button {
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--olive);
+  outline: 2px solid var(--olive-light);
   outline-offset: 2px;
 }
 
-/* =====================================
-   4. COVER PAGE
-   APRI / MỞ THIỆP
-===================================== */
-
+/* =========================================
+   PAGE 1 — COVER BUTTONS
+========================================= */
 .cover-action {
   position: absolute;
   top: 87.5%;
   height: 5%;
+  padding: 0;
   border: none;
-  background: transparent;
   border-radius: 30px;
+  background: transparent;
 }
 
 #openItalian {
@@ -140,28 +135,28 @@ textarea:focus-visible {
   width: 24%;
 }
 
-/* =====================================
-   5. PAGE 2: CEREMONY DETAILS
-===================================== */
-
+/* =========================================
+   PAGE 2 — DETAILS
+   All text backgrounds are transparent.
+========================================= */
 .detail-text {
   position: absolute;
-  background: transparent;
-  border: none;
-  color: var(--brown);
-
-  font-size: clamp(9px, 2.5cqw, 14px);
-  line-height: 1.25;
-  text-align: center;
-
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 3px;
+  padding: 0 4px;
+  margin: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  color: var(--brown);
+  font-size: clamp(9px, 2.5cqw, 14px);
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
 }
 
-/* DATE AND TIME */
-
+/* Date and time */
 #dateTimeText {
   left: 28%;
   top: 35.2%;
@@ -169,12 +164,11 @@ textarea:focus-visible {
   height: 7.4%;
 }
 
-/* LOCATION */
-
+/* Location — leaves space for map button */
 #locationField {
-  left: 44%;
+  left: 43%;
   top: 46.3%;
-  width: 31%;
+  width: 32%;
   height: 7%;
   flex-direction: column;
   gap: 3px;
@@ -188,8 +182,7 @@ textarea:focus-visible {
   font-size: .86em;
 }
 
-/* DRESS CODE */
-
+/* Dress code */
 #dressText {
   left: 28%;
   top: 58.2%;
@@ -197,118 +190,109 @@ textarea:focus-visible {
   height: 7%;
 }
 
-/* =====================================
-   6. SMALL MAP BUTTON
-   RIGHT SIDE OF LOCATION ROW
-
-   Transparent clickable area over
-   the small green button in details.png
-===================================== */
-
+/* =========================================
+   SMALL MAP BUTTON
+   Right side of location row
+========================================= */
 #mapButton {
   position: absolute;
-
   left: 77%;
   top: 47.5%;
-
   width: 11%;
   height: 4%;
-
+  padding: 0;
   border: none;
   border-radius: 99px;
   background: transparent;
 }
 
-/* =====================================
-   7. PAGE 2: GO TO RSVP
-
-   ABOVE BOTTOM LOTUS
-===================================== */
-
+/* =========================================
+   PAGE 2 — RSVP BUTTON
+   Above the bottom lotus
+========================================= */
 #goRSVP {
   position: absolute;
-
   left: 26%;
   top: 76%;
-
   width: 48%;
   height: 4.6%;
-
   padding: 0 5px;
-  border: 1px solid var(--olive);
+  border: 1px solid var(--olive-light);
   border-radius: 30px;
-
-  background: rgba(255, 250, 243, .92);
+  background: rgba(255, 250, 244, .93);
   color: var(--olive);
-
-  font-size: clamp(10px, 2.8cqw, 15px);
+  font-family: var(--font-title);
+  font-size: clamp(10px, 2.7cqw, 15px);
+  letter-spacing: .035em;
+  text-align: center;
 }
 
-/* BACK BUTTONS */
-
+/* Back buttons */
 .back {
   position: absolute;
   right: 5%;
   bottom: 2%;
-
-  padding: 6px 11px;
+  padding: 6px 10px;
   border: 1px solid #9b967e;
   border-radius: 20px;
-
-  background: rgba(255, 250, 243, .94);
-  color: var(--olive);
-
+  background: rgba(255, 250, 244, .94);
+  color: var(--olive-light);
   font-size: clamp(9px, 2.3cqw, 12px);
 }
 
-/* =====================================
-   8. PAGE 3: RSVP TITLE
+/* =========================================
+   PAGE 3 — RSVP TITLE
 
-   TITLE IS HTML, NOT IN IMAGE.
-   LANGUAGE CHANGES AUTOMATICALLY.
-===================================== */
+   SAME STYLE AS "LỄ HẰNG THUẬN"
+   Smaller size, elegant serif,
+   dark olive-green color.
 
+   TITLE IS GENERATED BY HTML.
+========================================= */
 .rsvp-title {
   position: absolute;
 
-  top: 19%;
-  left: 9%;
-  width: 82%;
+  /* POSITION */
+  top: 21.3%;
+  left: 12%;
+  width: 76%;
 
+  /* FONT */
   margin: 0;
-  text-align: center;
-
-  color: var(--olive);
-  font-size: clamp(14px, 4.2cqw, 23px);
+  padding: 0;
+  font-family: var(--font-title);
+  font-size: clamp(12px, 3.1cqw, 17px);
   font-weight: 400;
   font-style: normal;
-  letter-spacing: .07em;
-  line-height: 1.2;
+  letter-spacing: .18em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  text-align: center;
 
+  /* COLOR */
+  color: var(--olive);
+
+  /* NO BACKGROUND */
   background: transparent;
+  border: none;
+  box-shadow: none;
   pointer-events: none;
 }
 
-/* =====================================
-   9. RSVP INPUT FIELDS
-   NO WHITE BACKGROUNDS
-===================================== */
-
+/* =========================================
+   PAGE 3 — RSVP FORM INPUTS
+========================================= */
 .rsvp-input,
 .rsvp-message {
   position: absolute;
-
   left: 21%;
   width: 64%;
-
   margin: 0;
-  padding: 0 7px;
-
+  padding: 0 8px;
   border: none;
   outline: none;
   box-shadow: none;
   background: transparent;
-
   color: var(--olive);
   font-size: clamp(10px, 2.6cqw, 14px);
 }
@@ -319,113 +303,96 @@ textarea:focus-visible {
   opacity: 1;
 }
 
-/* FIELD 1: NAME */
-
+/* Name */
 #guestName {
   top: 53.6%;
   height: 2.7%;
 }
 
-/* FIELD 2: NUMBER OF GUESTS */
-
+/* Number of guests label */
 #guestCountLabel {
   position: absolute;
-
   left: 21%;
   top: 58.7%;
   width: 43%;
   height: 2.8%;
-
   display: flex;
   align-items: center;
-
   color: #8e8979;
   font-size: clamp(9px, 2.5cqw, 13px);
   pointer-events: none;
 }
 
-/* MINUS / PLUS */
-
+/* Minus and plus counter */
 .guest-counter {
   position: absolute;
-
   left: 67%;
   top: 58.7%;
-
   width: 18%;
   height: 2.8%;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  color: var(--olive);
+  color: var(--olive-light);
 }
 
 .guest-counter button {
+  padding: 0 3px;
   border: none;
   background: transparent;
-  color: var(--olive);
-
+  color: var(--olive-light);
   font-size: clamp(17px, 4cqw, 22px);
-  padding: 0 3px;
+}
+
+.guest-counter button:disabled {
+  opacity: .35;
+  cursor: default;
 }
 
 .guest-counter span {
   font-size: clamp(11px, 3cqw, 15px);
 }
 
-/* FIELD 3: DEPARTURE */
-
+/* Departure location */
 #departure {
   top: 64.3%;
   height: 2.7%;
 }
 
-/* FIELD 4: MESSAGE */
-
+/* Optional message */
 #guestMessage {
   top: 69.2%;
   height: 5.4%;
-
-  resize: none;
   padding-top: 5px;
-
+  resize: none;
   font-size: clamp(9px, 2.25cqw, 12px);
   line-height: 1.2;
 }
 
-/* FIELD 5: DIETARY / ALLERGIES */
-
+/* Food / allergies */
 #dietary {
   top: 77.1%;
   height: 2.7%;
 }
 
-/* =====================================
-   10. RSVP SUBMIT BUTTON
-
-   Text appears over the illustrated
-   green button.
-===================================== */
-
+/* =========================================
+   RSVP SUBMIT BUTTON
+   Text over illustrated green button
+========================================= */
 #submitRSVP {
   position: absolute;
-
   left: 27%;
   top: 84.3%;
-
   width: 46%;
   height: 5%;
-
   padding: 0 12% 0 3%;
-
   border: none;
   border-radius: 40px;
   background: transparent;
-
   color: #fffaf2;
+  font-family: var(--font-title);
   font-size: clamp(10px, 2.7cqw, 14px);
+  letter-spacing: .04em;
   text-align: center;
 }
 
@@ -434,45 +401,36 @@ textarea:focus-visible {
   cursor: wait;
 }
 
-/* SUBMISSION STATUS */
-
+/* RSVP submission status */
 #rsvpStatus {
   position: absolute;
-
   top: 90%;
   left: 12%;
   width: 76%;
-
+  color: var(--olive-light);
   font-size: clamp(9px, 2.3cqw, 12px);
   text-align: center;
-  color: var(--olive);
 }
 
-/* =====================================
-   11. FLOATING PETALS
-===================================== */
-
+/* =========================================
+   FLOATING PETALS
+========================================= */
 .petal {
   position: absolute;
   z-index: 5;
   top: -3%;
-
   width: 7px;
   height: 5px;
-
   background: #e8d0b6;
   opacity: .35;
   border-radius: 80% 0 80% 0;
-
   pointer-events: none;
   animation: fall linear infinite;
 }
 
 @keyframes fall {
   to {
-    transform:
-      translate(30px, 900px)
-      rotate(500deg);
+    transform: translate(30px, 900px) rotate(500deg);
   }
 }
 
@@ -485,261 +443,252 @@ textarea:focus-visible {
     display: none;
   }
 }
-
 </style>
 </head>
 
 <body>
-
 <main>
 
 <div class="card" id="card">
 
-<!-- =====================================
-     PAGE 1: COVER
-===================================== -->
-
-<section
-  class="page active"
-  id="coverPage"
-  aria-hidden="false"
->
-
-  <img
-    class="artwork"
-    src="cover.png"
-    alt="Lễ Hằng Thuận — Matteo và Hoà"
+  <!-- =====================================
+       PAGE 1 — COVER
+  ====================================== -->
+  <section
+    class="page active"
+    id="coverPage"
+    aria-hidden="false"
   >
 
-  <div class="overlay">
-
-    <!-- ITALIAN -->
-    <button
-      class="cover-action"
-      id="openItalian"
-      type="button"
-      aria-label="Apri l'invito in italiano"
-      onclick="openInvitation('it')"
-    ></button>
-
-    <!-- VIETNAMESE -->
-    <button
-      class="cover-action"
-      id="openVietnamese"
-      type="button"
-      aria-label="Mở thiệp tiếng Việt"
-      onclick="openInvitation('vi')"
-    ></button>
-
-  </div>
-
-</section>
-
-<!-- =====================================
-     PAGE 2: DETAILS
-===================================== -->
-
-<section
-  class="page"
-  id="detailsPage"
-  aria-hidden="true"
-  inert
->
-
-  <img
-    class="artwork"
-    src="details.png"
-    alt="Duyên Lành Hội Ngộ"
-  >
-
-  <div class="overlay">
-
-    <!-- DATE AND TIME -->
-    <div
-      class="detail-text"
-      id="dateTimeText"
-    ></div>
-
-    <!-- LOCATION -->
-    <div
-      class="detail-text"
-      id="locationField"
-    >
-      <span id="venueText"></span>
-      <small id="addressText"></small>
-    </div>
-
-    <!-- SMALL MAP BUTTON -->
-    <button
-      type="button"
-      id="mapButton"
-      onclick="openMap()"
-      aria-label="Open map directions"
-    ></button>
-
-    <!-- DRESS CODE -->
-    <div
-      class="detail-text"
-      id="dressText"
-    ></div>
-
-    <!-- RSVP BUTTON -->
-    <button
-      type="button"
-      id="goRSVP"
-      onclick="showPage('rsvpPage')"
-    ></button>
-
-    <!-- BACK -->
-    <button
-      type="button"
-      class="back"
-      id="backToCover"
-      onclick="showPage('coverPage')"
-    ></button>
-
-  </div>
-
-</section>
-
-<!-- =====================================
-     PAGE 3: RSVP
-===================================== -->
-
-<section
-  class="page"
-  id="rsvpPage"
-  aria-hidden="true"
-  inert
->
-
-  <img
-    class="artwork"
-    src="rsvp.png"
-    alt="Wedding attendance form"
-  >
-
-  <form
-    class="overlay"
-    id="rsvpForm"
-    onsubmit="submitRSVP(event)"
-  >
-
-    <!-- LANGUAGE-SWITCHING TITLE -->
-    <h2
-      class="rsvp-title"
-      id="rsvpTitle"
-    ></h2>
-
-    <!-- 1. NAME -->
-    <input
-      class="rsvp-input"
-      id="guestName"
-      name="name"
-      type="text"
-      autocomplete="name"
-      maxlength="150"
-      required
-      aria-label="Guest name"
+    <img
+      class="artwork"
+      src="cover.png"
+      alt="Lễ Hằng Thuận — Matteo và Hoà"
     >
 
-    <!-- 2. GUEST COUNTER -->
-    <span id="guestCountLabel"></span>
+    <div class="overlay">
 
-    <div class="guest-counter">
-
+      <!-- Italian -->
       <button
+        class="cover-action"
+        id="openItalian"
         type="button"
-        id="minusGuest"
-        onclick="changeGuests(-1)"
-        aria-label="Remove guest"
-      >−</button>
+        aria-label="Apri l'invito in italiano"
+        onclick="openInvitation('it')"
+      ></button>
 
-      <span id="guestCount">1</span>
-
+      <!-- Vietnamese -->
       <button
+        class="cover-action"
+        id="openVietnamese"
         type="button"
-        id="plusGuest"
-        onclick="changeGuests(1)"
-        aria-label="Add guest"
-      >+</button>
+        aria-label="Mở thiệp tiếng Việt"
+        onclick="openInvitation('vi')"
+      ></button>
 
     </div>
+  </section>
 
-    <!-- 3. DEPARTURE LOCATION -->
-    <input
-      class="rsvp-input"
-      id="departure"
-      name="departure"
-      type="text"
-      maxlength="150"
-      aria-label="Departure location"
+  <!-- =====================================
+       PAGE 2 — CEREMONY DETAILS
+  ====================================== -->
+  <section
+    class="page"
+    id="detailsPage"
+    aria-hidden="true"
+    inert
+  >
+
+    <img
+      class="artwork"
+      src="details.png"
+      alt="Duyên Lành Hội Ngộ"
     >
 
-    <!-- 4. OPTIONAL MESSAGE -->
-    <textarea
-      class="rsvp-message"
-      id="guestMessage"
-      name="message"
-      maxlength="1000"
-      aria-label="Additional guests, questions and requests"
-    ></textarea>
+    <div class="overlay">
 
-    <!-- 5. FOOD / ALLERGIES -->
-    <input
-      class="rsvp-input"
-      id="dietary"
-      name="dietary"
-      type="text"
-      maxlength="300"
-      aria-label="Dietary needs and allergies"
+      <!-- Date and time -->
+      <div
+        class="detail-text"
+        id="dateTimeText"
+      ></div>
+
+      <!-- Venue and address -->
+      <div
+        class="detail-text"
+        id="locationField"
+      >
+        <span id="venueText"></span>
+        <small id="addressText"></small>
+      </div>
+
+      <!-- Small green map button -->
+      <button
+        type="button"
+        id="mapButton"
+        onclick="openMap()"
+        aria-label="Open map directions"
+      ></button>
+
+      <!-- Dress code -->
+      <div
+        class="detail-text"
+        id="dressText"
+      ></div>
+
+      <!-- RSVP button -->
+      <button
+        type="button"
+        id="goRSVP"
+        onclick="showPage('rsvpPage')"
+      ></button>
+
+      <!-- Back to cover -->
+      <button
+        type="button"
+        class="back"
+        id="backToCover"
+        onclick="showPage('coverPage')"
+      ></button>
+
+    </div>
+  </section>
+
+  <!-- =====================================
+       PAGE 3 — RSVP
+  ====================================== -->
+  <section
+    class="page"
+    id="rsvpPage"
+    aria-hidden="true"
+    inert
+  >
+
+    <img
+      class="artwork"
+      src="rsvp.png"
+      alt="Wedding attendance confirmation"
     >
 
-    <!-- SUBMIT -->
-    <button
-      type="submit"
-      id="submitRSVP"
-    ></button>
+    <form
+      class="overlay"
+      id="rsvpForm"
+      onsubmit="submitRSVP(event)"
+    >
 
-    <div
-      id="rsvpStatus"
-      role="status"
-      aria-live="polite"
-    ></div>
+      <!-- Language-changing RSVP title -->
+      <h2
+        class="rsvp-title"
+        id="rsvpTitle"
+      ></h2>
 
-    <!-- BACK -->
-    <button
-      type="button"
-      class="back"
-      id="backToDetails"
-      onclick="showPage('detailsPage')"
-    ></button>
+      <!-- Guest name -->
+      <input
+        class="rsvp-input"
+        id="guestName"
+        name="name"
+        type="text"
+        autocomplete="name"
+        maxlength="150"
+        required
+        aria-label="Guest name"
+      >
 
-  </form>
+      <!-- Number of guests -->
+      <span id="guestCountLabel"></span>
 
-</section>
+      <div class="guest-counter">
+
+        <button
+          type="button"
+          id="minusGuest"
+          onclick="changeGuests(-1)"
+          aria-label="Remove one guest"
+        >−</button>
+
+        <span id="guestCount">1</span>
+
+        <button
+          type="button"
+          id="plusGuest"
+          onclick="changeGuests(1)"
+          aria-label="Add one guest"
+        >+</button>
+
+      </div>
+
+      <!-- Departure location -->
+      <input
+        class="rsvp-input"
+        id="departure"
+        name="departure"
+        type="text"
+        maxlength="150"
+        aria-label="Departure location"
+      >
+
+      <!-- Optional message -->
+      <textarea
+        class="rsvp-message"
+        id="guestMessage"
+        name="message"
+        maxlength="1000"
+        aria-label="Other guests, requests and questions"
+      ></textarea>
+
+      <!-- Dietary needs / allergies -->
+      <input
+        class="rsvp-input"
+        id="dietary"
+        name="dietary"
+        type="text"
+        maxlength="300"
+        aria-label="Dietary needs and allergies"
+      >
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        id="submitRSVP"
+      ></button>
+
+      <!-- Submission status -->
+      <div
+        id="rsvpStatus"
+        role="status"
+        aria-live="polite"
+      ></div>
+
+      <!-- Back to details -->
+      <button
+        type="button"
+        class="back"
+        id="backToDetails"
+        onclick="showPage('detailsPage')"
+      ></button>
+
+    </form>
+  </section>
 
 </div>
 </main>
 
 <script>
-
-/* =====================================
-   12. EDIT YOUR INVITATION INFORMATION
-===================================== */
+/* =========================================
+   EDIT ALL WEDDING INFORMATION HERE
+========================================= */
 
 const SETTINGS = {
 
-  // Paste Google Maps link here
+  // Paste your Google Maps link:
   googleMapsUrl: "",
 
-  // Paste Google Apps Script /exec URL here
+  // Paste your Google Apps Script /exec URL:
   googleScriptUrl: "",
 
-  /* =================================
-     VIETNAMESE VERSION
-  ================================= */
-
+  /* =====================================
+     VIETNAMESE
+  ====================================== */
   vi: {
 
     date: "Ngày / Tháng / Năm",
@@ -750,6 +699,7 @@ const SETTINGS = {
 
     dresscode: "Áo dài truyền thống",
 
+    // PAGE 3 TITLE
     rsvpTitle: "XÁC NHẬN THAM DỰ",
 
     nextButton: "XÁC NHẬN THAM DỰ →",
@@ -758,7 +708,6 @@ const SETTINGS = {
 
     name: "Họ và tên",
     guests: "Số lượng tham dự",
-
     departure: "Bạn khởi hành từ đâu?",
 
     messageHint:
@@ -783,10 +732,9 @@ const SETTINGS = {
 
   },
 
-  /* =================================
-     ITALIAN VERSION
-  ================================= */
-
+  /* =====================================
+     ITALIAN
+  ====================================== */
   it: {
 
     date: "Data della cerimonia",
@@ -797,6 +745,7 @@ const SETTINGS = {
 
     dresscode: "Abito tradizionale",
 
+    // PAGE 3 TITLE
     rsvpTitle: "CONFERMA PRESENZA",
 
     nextButton: "CONFERMA PRESENZA →",
@@ -805,7 +754,6 @@ const SETTINGS = {
 
     name: "Nome e cognome",
     guests: "Numero di partecipanti",
-
     departure: "Da dove partirai?",
 
     messageHint:
@@ -829,27 +777,28 @@ const SETTINGS = {
       "Il link di Google Maps non è disponibile."
 
   }
-
 };
 
-/* =====================================
-   13. WEBSITE FUNCTIONS
-===================================== */
+/* =========================================
+   WEBSITE FUNCTIONS
+========================================= */
 
 const $ = id => document.getElementById(id);
 
 let currentLanguage = "vi";
 let guestCount = 1;
 
-const t = () => SETTINGS[currentLanguage];
+function t() {
+  return SETTINGS[currentLanguage];
+}
 
 /* PAGE NAVIGATION */
 
-function showPage(id) {
+function showPage(pageId) {
 
   document.querySelectorAll(".page").forEach(page => {
 
-    const active = page.id === id;
+    const active = page.id === pageId;
 
     page.classList.toggle("active", active);
 
@@ -864,7 +813,7 @@ function showPage(id) {
 
 }
 
-/* OPEN LANGUAGE VERSION */
+/* OPEN ITALIAN / VIETNAMESE */
 
 function openInvitation(language) {
 
@@ -876,9 +825,9 @@ function openInvitation(language) {
 
 }
 
-/* =====================================
-   14. LANGUAGE SWITCHING
-===================================== */
+/* =========================================
+   AUTOMATIC LANGUAGE SWITCHING
+========================================= */
 
 function updateLanguage() {
 
@@ -886,7 +835,7 @@ function updateLanguage() {
 
   document.documentElement.lang = currentLanguage;
 
-  /* PAGE 2 */
+  /* Page 2 */
 
   $("dateTimeText").textContent =
     a.date + " · " + a.time;
@@ -899,17 +848,17 @@ function updateLanguage() {
 
   $("goRSVP").textContent = a.nextButton;
 
-  /* PAGE 3 TITLE */
+  /* Page 3 title */
 
   $("rsvpTitle").textContent = a.rsvpTitle;
 
-  /* BACK BUTTONS */
+  /* Back buttons */
 
   $("backToCover").textContent = a.back;
 
   $("backToDetails").textContent = a.back;
 
-  /* RSVP INPUT PLACEHOLDERS */
+  /* RSVP form */
 
   $("guestName").placeholder = a.name;
 
@@ -921,26 +870,21 @@ function updateLanguage() {
 
   $("dietary").placeholder = a.dietary;
 
-  /* SUBMIT BUTTON */
-
   $("submitRSVP").textContent = a.rsvpButton;
 
   $("rsvpStatus").textContent = "";
 
 }
 
-/* =====================================
-   15. GOOGLE MAPS
-===================================== */
+/* =========================================
+   GOOGLE MAPS
+========================================= */
 
 function openMap() {
 
   if (!SETTINGS.googleMapsUrl) {
-
     alert(t().noMap);
-
     return;
-
   }
 
   window.open(
@@ -951,9 +895,9 @@ function openMap() {
 
 }
 
-/* =====================================
-   16. MINUS / PLUS GUEST COUNTER
-===================================== */
+/* =========================================
+   GUEST COUNTER
+========================================= */
 
 function changeGuests(delta) {
 
@@ -970,9 +914,9 @@ function changeGuests(delta) {
 
 }
 
-/* =====================================
-   17. SEND RSVP TO GOOGLE SHEETS
-===================================== */
+/* =========================================
+   GOOGLE SHEETS RSVP SUBMISSION
+========================================= */
 
 async function submitRSVP(event) {
 
@@ -984,11 +928,8 @@ async function submitRSVP(event) {
   const status = $("rsvpStatus");
 
   if (!SETTINGS.googleScriptUrl) {
-
     status.textContent = a.noScript;
-
     return;
-
   }
 
   const payload = {
@@ -1008,17 +949,12 @@ async function submitRSVP(event) {
   };
 
   if (!payload.name) {
-
     $("guestName").focus();
-
     return;
-
   }
 
   button.disabled = true;
-
   button.textContent = a.sending;
-
   status.textContent = "";
 
   try {
@@ -1037,12 +973,7 @@ async function submitRSVP(event) {
 
     });
 
-    /*
-      Important:
-      no-cors does not confirm that
-      Google Sheets saved the row.
-    */
-
+    // no-cors cannot verify successful saving.
     status.textContent = a.sent;
 
   } catch (error) {
@@ -1061,19 +992,17 @@ async function submitRSVP(event) {
 
 }
 
-/* =====================================
-   18. INITIALIZATION
-===================================== */
+/* =========================================
+   INITIALIZATION
+========================================= */
 
 updateLanguage();
-
 showPage("coverPage");
-
 changeGuests(0);
 
-/* =====================================
-   19. FLOATING PETALS
-===================================== */
+/* =========================================
+   FLOATING PETALS
+========================================= */
 
 if (
   !window.matchMedia(
@@ -1101,7 +1030,6 @@ if (
   }
 
 }
-
 </script>
 
 </body>
