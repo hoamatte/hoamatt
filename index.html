@@ -282,19 +282,31 @@ textarea:focus-visible {
 /* =========================================
    PAGE 3 — RSVP FORM INPUTS
 ========================================= */
+
+/* =========================================
+   PAGE 3 — RSVP FORM ALIGNMENT
+   For latest 960 × 1578 RSVP image
+========================================= */
+
+/* Shared input styling */
 .rsvp-input,
 .rsvp-message {
   position: absolute;
   left: 21%;
   width: 64%;
   margin: 0;
-  padding: 0 8px;
+  padding: 0 10px;
+
   border: none;
   outline: none;
   box-shadow: none;
   background: transparent;
-  color: var(--olive);
+
+  color: #263b2b;
+  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(10px, 2.6cqw, 14px);
+  font-weight: 400;
+  text-align: left;
 }
 
 .rsvp-input::placeholder,
@@ -303,76 +315,111 @@ textarea:focus-visible {
   opacity: 1;
 }
 
-/* Name */
+/* 1. PERSON ICON — NAME
+   Image box center: 54.2% */
 #guestName {
-  top: 53.6%;
-  height: 2.7%;
+  top: 52.7%;
+  height: 2.9%;
 }
 
-/* Number of guests label */
+/* 2. PEOPLE ICON — GUEST COUNT
+   Image box center: 59.1% */
 #guestCountLabel {
   position: absolute;
   left: 21%;
-  top: 58.7%;
+  top: 57.6%;
   width: 43%;
-  height: 2.8%;
+  height: 2.9%;
+
   display: flex;
   align-items: center;
+
   color: #8e8979;
   font-size: clamp(9px, 2.5cqw, 13px);
   pointer-events: none;
 }
 
-/* Minus and plus counter */
 .guest-counter {
   position: absolute;
   left: 67%;
-  top: 58.7%;
+  top: 57.6%;
   width: 18%;
-  height: 2.8%;
+  height: 2.9%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--olive-light);
+
+  color: #606b39;
 }
 
 .guest-counter button {
-  padding: 0 3px;
   border: none;
   background: transparent;
-  color: var(--olive-light);
+  color: #606b39;
+  padding: 0 3px;
   font-size: clamp(17px, 4cqw, 22px);
-}
-
-.guest-counter button:disabled {
-  opacity: .35;
-  cursor: default;
 }
 
 .guest-counter span {
   font-size: clamp(11px, 3cqw, 15px);
 }
 
-/* Departure location */
+/* 3. LOCATION ICON — DEPARTURE
+   Image box center: 64.0% */
 #departure {
-  top: 64.3%;
-  height: 2.7%;
+  top: 62.5%;
+  height: 2.9%;
 }
 
-/* Optional message */
+/* 4. PENCIL ICON — OPTIONAL MESSAGE
+   Larger illustrated box */
 #guestMessage {
-  top: 69.2%;
-  height: 5.4%;
-  padding-top: 5px;
-  resize: none;
+  position: absolute;
+  left: 21%;
+  top: 67.7%;
+  width: 64%;
+  height: 6.3%;
+
+  margin: 0;
+  padding: 9px 10px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+
+  color: #263b2b;
+  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(9px, 2.25cqw, 12px);
-  line-height: 1.2;
+  line-height: 1.3;
+  resize: none;
 }
 
-/* Food / allergies */
+/* 5. CUTLERY ICON — FOOD / ALLERGIES
+   Image box center: 77.3% */
 #dietary {
-  top: 77.1%;
-  height: 2.7%;
+  top: 75.8%;
+  height: 2.9%;
+}
+
+/* SUBMIT BUTTON
+   Over the illustrated green button */
+#submitRSVP {
+  position: absolute;
+  left: 27%;
+  top: 83.1%;
+  width: 46%;
+  height: 5%;
+
+  padding: 0 12% 0 3%;
+  border: none;
+  border-radius: 40px;
+  background: transparent;
+
+  color: #fffaf2;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(10px, 2.7cqw, 14px);
+  text-align: center;
 }
 
 /* =========================================
