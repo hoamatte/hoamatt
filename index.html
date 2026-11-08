@@ -52,16 +52,38 @@
       border-radius: 6% / 3.6%;
       background: var(--cream);
       container-type: inline-size;
+      isolation: isolate;
     }
+
+    /* =====================================
+       SMOOTH FADING BETWEEN PAGES
+    ===================================== */
 
     .page {
       position: absolute;
       inset: 0;
-      display: none;
+      display: block;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(12px) scale(0.985);
+
+      transition:
+        opacity 0.7s ease-in-out,
+        transform 0.7s ease-in-out,
+        visibility 0s linear 0.7s;
     }
 
     .page.active {
-      display: block;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+
+      transition:
+        opacity 0.7s ease-in-out,
+        transform 0.7s ease-in-out,
+        visibility 0s;
     }
 
     .artwork {
@@ -208,9 +230,6 @@
 
     /* =====================================
        PAGE 3 — PROGRAM & TIMELINE
-
-       Positioned in the blank middle of
-       your uploaded program.png artwork.
     ===================================== */
 
     .program-content {
@@ -296,6 +315,7 @@
       line-height: 1.35;
     }
 
+    /* MOVED HIGHER to avoid background overlap */
     #goRSVP {
       top: 73%;
       background: var(--olive-light);
@@ -440,6 +460,14 @@
       font-size: clamp(9px, 2.3cqw, 12px);
       text-align: center;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page,
+      .page.active {
+        transition: none;
+        transform: none;
+      }
+    }
   </style>
 </head>
 
@@ -538,7 +566,7 @@
       <img
         class="artwork"
         src="program.png"
-        alt="Duyên Lành Hội Ngộ — Wedding program"
+        alt="Wedding program"
       >
 
       <div class="overlay">
@@ -674,21 +702,12 @@
 <script>
 /* ==========================================
    SETTINGS — EDIT YOUR INFORMATION HERE
-
-   The timeline times are examples.
-   Replace them with your actual schedule.
 ========================================== */
 
 const SETTINGS = {
-
-  // Paste your Google Maps link here.
   googleMapsUrl: "",
-
-  // Paste your deployed Google Apps Script
-  // Web app URL ending in /exec here.
   googleScriptUrl: "https://script.google.com/macros/s/AKfycbxBb947UNeFFn6hDw-p-vtFq10vsotUOCn8RI2sOOmGZ2S0z53CUMMaiQg1u5qOVj27/exec",
 
-  /* VIETNAMESE */
   vi: {
     date: "Ngày / Tháng / Năm",
     time: "Giờ bắt đầu",
@@ -743,7 +762,6 @@ const SETTINGS = {
     noMap: "Chưa có liên kết Google Maps."
   },
 
-  /* ITALIAN */
   it: {
     date: "Data della cerimonia",
     time: "Orario",
@@ -814,16 +832,22 @@ function t() {
 }
 
 /* ==========================================
-   PAGE NAVIGATION
+   PAGE NAVIGATION WITH FADING
 ========================================== */
 
 function showPage(pageId) {
-  document.querySelectorAll(".page").forEach(page => {
-    const active = page.id === pageId;
+  const pages = document.querySelectorAll(".page");
 
-    page.classList.toggle("active", active);
-    page.inert = !active;
-    page.setAttribute("aria-hidden", String(!active));
+  pages.forEach(page => {
+    const isActive = page.id === pageId;
+
+    page.classList.toggle("active", isActive);
+    page.inert = !isActive;
+
+    page.setAttribute(
+      "aria-hidden",
+      String(!isActive)
+    );
   });
 }
 
@@ -842,7 +866,6 @@ function updateLanguage() {
 
   document.documentElement.lang = currentLanguage;
 
-  /* Ceremony details */
   $("dateTimeText").textContent =
     a.date + " · " + a.time;
 
@@ -850,7 +873,6 @@ function updateLanguage() {
   $("addressText").textContent = a.address;
   $("dressText").textContent = a.dresscode;
 
-  /* Program page */
   $("goProgram").textContent = a.programButton;
   $("programIntro").textContent = a.programIntro;
 
@@ -873,7 +895,6 @@ function updateLanguage() {
 
   $("timeline").replaceChildren(...timelineItems);
 
-  /* RSVP page */
   $("goRSVP").textContent = a.nextButton;
   $("rsvpTitle").textContent = a.rsvpTitle;
 
@@ -885,7 +906,6 @@ function updateLanguage() {
 
   $("submitRSVP").textContent = a.rsvpButton;
 
-  /* Back buttons */
   [
     "backToCover",
     "backToDetails",
@@ -914,9 +934,6 @@ function changeGuests(delta) {
 
 /* ==========================================
    RSVP — GOOGLE SHEETS
-
-   Prevents form reload and returning
-   to the cover page.
 ========================================== */
 
 async function submitRSVP(event) {
@@ -961,8 +978,8 @@ async function submitRSVP(event) {
       body: JSON.stringify(payload)
     });
 
-    // no-cors cannot confirm that Google
-    // Sheets successfully saved the row.
+    // no-cors cannot confirm Google Sheets
+    // successfully saved the response.
     status.textContent = a.sent;
 
   } catch (error) {
@@ -1000,17 +1017,14 @@ $("mapButton").addEventListener("click", () => {
   );
 });
 
-/* Details → Program */
 $("goProgram").addEventListener("click", () => {
   showPage("programPage");
 });
 
-/* Program → RSVP */
 $("goRSVP").addEventListener("click", () => {
   showPage("rsvpPage");
 });
 
-/* Back buttons */
 $("backToCover").addEventListener("click", () => {
   showPage("coverPage");
 });
@@ -1023,7 +1037,6 @@ $("backToProgram").addEventListener("click", () => {
   showPage("programPage");
 });
 
-/* Guest count */
 $("minusGuest").addEventListener("click", () => {
   changeGuests(-1);
 });
@@ -1032,18 +1045,14 @@ $("plusGuest").addEventListener("click", () => {
   changeGuests(1);
 });
 
-/*
-  IMPORTANT:
-  Only ONE submit listener.
-  No inline onsubmit or form action.
-*/
+/* Only one submit listener — no page reload */
 $("rsvpForm").addEventListener(
   "submit",
   submitRSVP
 );
 
 /* ==========================================
-   INITIALIZE WEBSITE
+   INITIALIZE
 ========================================== */
 
 updateLanguage();
