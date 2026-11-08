@@ -468,6 +468,34 @@
         transform: none;
       }
     }
+    
+/* =====================================
+   FIRST LOAD — ELEGANT FADE IN
+===================================== */
+
+@keyframes invitationFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card {
+  animation: invitationFadeIn 1.5s ease-out both;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
+}
+
   </style>
 </head>
 
